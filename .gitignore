@@ -1,0 +1,82 @@
+# ---------------------------------------------------------------
+# Credentials & secrets  — NEVER commit these
+# ---------------------------------------------------------------
+.env
+.env.*
+!.env.example
+# Google Cloud service-account keys (contain a private_key)
+application-project-dook-int-*.json
+*-service-account*.json
+gcp-*.json
+# Generic key/cert material
+*.pem
+*.key
+*.p12
+*.pfx
+storage/*.key
+auth.json
+
+# ---------------------------------------------------------------
+# Dependencies  — restorable from composer.lock / package-lock.json
+# ---------------------------------------------------------------
+/vendor/
+/node_modules/
+npm-debug.log
+yarn-error.log
+
+# ---------------------------------------------------------------
+# Laravel runtime / generated
+# ---------------------------------------------------------------
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/framework/testing/*
+/storage/logs/*
+!/storage/logs/.gitignore
+/storage/app/public
+.phpunit.result.cache
+
+# Public symlinks & build output
+/public/storage
+/public/hot
+/public_html/storage
+/public_html/hot
+
+# App-generated artifacts (written at runtime, not source)
+/public/pdffiles/
+/public/dook/
+
+# ---------------------------------------------------------------
+# Editors / OS
+# ---------------------------------------------------------------
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------
+# Local dev environments
+# ---------------------------------------------------------------
+Homestead.yaml
+Homestead.json
+/.vagrant
+
+# ---------------------------------------------------------------
+# NOTE: no blanket *.png / *.jpg / *.pdf rules.
+# The previous .gitignore excluded those globally, which is why
+# public/images/logo.png, no-image.png and no-image-banner.jpg were
+# never committed and 404 in the admin UI. Site image assets must
+# be tracked; only generated output is excluded (see above).
+# ---------------------------------------------------------------
+
+# Stray PHP error logs (were committed under public/signature/)
+error_log
+**/error_log

@@ -1,0 +1,121 @@
+@extends('layouts.apps')
+@section('headSection')
+@section('title', 'Itinerary Create')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+@endsection
+@section('main-content')
+<div class="content-wrapper">
+    <section class="content-header">
+      <h1>Itinerary Create</h1>
+    </section>
+    <section class="content">
+      <div class="row">
+          <form role="form" id="AgentItineraryForm" enctype="multipart/form-data">
+            @csrf
+              <div class="box-body">
+                <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label>Title</label> <span class="validationError" id="title_error"></span>
+                    <input type="text" class="form-control" name="title" id="title">
+                  </div>
+                </div>
+                
+                <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label>Terms & Conditions</label> <span class="validationError" id="description_error"></span>
+                    <textarea class="form-control" name="description" id="description"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="exampleInputFile">Attachment</label> <span class="validationError" id="image_error"></span> 
+                  <input type="file" id="pdf_name" name="pdf_name" accept="application/pdf">
+                </div>
+              </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 button-submit">
+                  <button class="btn btn-primary active" type="button" id="store_form"><i class="fa fa-save"></i> Submit</button>
+                  <img src="{{ asset('images/loader.gif') }}" id="gif" style="width: 3%; visibility: hidden;">
+                  <span class="text-success" id="mesegese" style="margin-left: 10px"></span>
+                </div> 
+              </div>
+          </form>
+      </div>
+    </section>
+  </div>
+  <!-- Edit Itinearay Modal-->
+    <style type="text/css">
+    .steps.clearfix{margin-top:10px}span.step-icon{padding-top:10px}.steps.clearfix>ul>li{display:inline-flex;margin-right:20px}.box.box-primary{border-top-color:#3c8dbc;background:0 0}.radio{display:inline}.radio>label{margin-right:30px}.validationError {color: #ff0c0c;}.button-submit{margin-top: 20px;margin-bottom: 20px}.ck.ck-content.ck-editor__editable {height: 150px;}span.ck-file-dialog-button {display: none;}.steps.clearfix.text-center{margin-top: 20px;padding-bottom: 20px;}a.dropdown-item.edit {padding-left: 10px !important;display: inline-block;padding: 5px;}
+    .modal-content{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%;pointer-events:auto;background-color:#fff;background-clip:padding-box;border:1px solid #ebedf2;border-radius:.3rem;outline:0}.modal-footer{padding:10px;text-align:right;border-top:1px solid #e5e5e5;background-color:#fff}.sss{padding: 8}.pwa-editor-bar-panel {display: none !important;}
+  </style>
+  @endsection
+  @section('footerSection')
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+            $('#store_form').click(function (e) {
+                e.preventDefault();
+                $('#gif').show();
+                var title = $('#title').val();
+                if (title == "") {
+                    $("span#title_error").html('This field is required!');
+                    $("input#title").focus();
+                    return false;
+                }
+
+                $('#gif').css('visibility', 'visible');
+                var formDatas = new FormData(document.getElementById('AgentItineraryForm'));
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    url: "{{ route('agent_itinerary_store') }}",
+                    data: formDatas,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('#gif').hide();
+                        $('#mesegese').html("<span class='sussecmsg'>Success!</span>");
+                        window.location = data.url;
+                    },
+                    errors: function () {
+
+                    }
+
+                });
+            });
+        });
+      
+  </script>
+<!--   <script type="text/javascript">
+        $(".disableItinerary").click(function () {
+          var id = $(this).data("id");
+            console.log(id);
+            var token = $("meta[name='csrf-token']").attr("content");
+            if (confirm("Are you sure you want to disable this Itinerary?"))
+              $.ajax(
+              {
+               url: '/itinerary-disable/' + id,
+                type: 'POST',
+                data: {
+                    "id": id,
+                    "_token": token,
+                },
+                success: function (data) {
+                  alert("Itinerary disabled successfully!!");
+                  window.location.reload();
+                }
+              });
+        });
+  </script> -->
+
+  <script>
+    $(document).ready(function() {
+      $('#description').summernote({
+          height: 150,
+          focus: true
+      });
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+  @endsection
