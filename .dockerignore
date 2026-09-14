@@ -1,0 +1,80 @@
+# ------------------------------------------------------------------
+# Build-context excludes for the dookadmin image.
+#
+# Guiding rule: an image built from this working copy must contain what an
+# image built by CI from a git checkout contains - nothing more. Anything
+# gitignored that happens to exist on a developer machine stays out.
+#
+# Load-bearing for security: without this file, `COPY . .` would bake .env
+# (DB, AWS, DigitalOcean, Meta and CRM credentials) and the Google Cloud
+# service-account key into a layer pushed to a registry. Deleting them in a
+# later layer would not help; the earlier layer keeps them.
+# ------------------------------------------------------------------
+
+.git
+.gitignore
+.gitattributes
+
+# --- Secrets ---------------------------------------------------------
+.env
+.env.*
+application-project-dook-int-*.json
+*-service-account*.json
+gcp-*.json
+gcs-key*.json
+*.pem
+*.key
+*.p12
+*.pfx
+auth.json
+
+# --- Dependencies (rebuilt by the vendor stage) ----------------------
+vendor
+node_modules
+
+# --- Runtime state ---------------------------------------------------
+# NOT storage/fonts: it holds 31 committed dompdf font files, including the
+# Dancing Script signature font, and PDFs render without them.
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/app/public/*
+/bootstrap/cache/*.php
+.phpunit.result.cache
+
+# --- Runtime-written public directories (gitignored) -----------------
+# The entrypoint recreates them. Their production contents (generated PDFs,
+# landing images under dook/) are data, and belong on a volume.
+/public/pdffiles
+/public/dook
+/public/storage
+/public/hot
+**/error_log
+
+# --- Not used at runtime ---------------------------------------------
+# info.php is a bare phpinfo() - it is outside public/ and so not served,
+# but has no reason to be in the image at all.
+info.php
+composer_17apr2025.json
+/tests
+phpunit.xml
+README.md
+webpack.mix.js
+package.json
+package-lock.json
+server.php
+public/web.config
+
+# --- Docker's own files ----------------------------------------------
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# --- Editors / OS ----------------------------------------------------
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+desktop.ini
