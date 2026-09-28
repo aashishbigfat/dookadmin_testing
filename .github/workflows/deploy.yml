@@ -1,0 +1,257 @@
+# Build the dookadmin image in CI, push it to Artifact Registry, and have the
+# VM pull it. Nothing is built on the VM: that box already serves dookwebsite
+# and dookblog, and a build there would compete with a live site for CPU.
+#
+# Auth is keyless (Workload Identity Federation). This repository is PUBLIC -
+# no service-account JSON goes anywhere near it.
+#
+# PREREQUISITES on the GCP side. This workflow cannot create them for itself,
+# and the first run fails at "Authenticate" until they exist:
+#
+#   1. The WIF provider's attribute condition must trust this repository.
+#      It was pinned to dooksite_testing and dookblog_testing only.
+#   2. github-deployer@ must be impersonable by this repo's principalSet
+#      (roles/iam.workloadIdentityUser).
+#   3. An Artifact Registry repository named 'dookadmin' in asia-south1.
+#
+# WHAT THIS DEPLOYS. The app still writes uploads to its own filesystem -
+# images, generated PDFs, CVs, signatures. Those paths are bind-mounted from
+# the VM (see docker-compose.prod.yml), which is why this targets a VM and not
+# Cloud Run: on Cloud Run every upload would be lost on the next cold start.
+#
+# Manual trigger to start. Turn the `push` block on once a run has gone green.
+
+name: Deploy dookadmin to GCP
+
+on:
+  workflow_dispatch:
+    inputs:
+      sync_env:
+        description: "Rewrite /etc/dookadmin/app.env on the VM from the APP_ENV_FILE secret"
+        type: boolean
+        default: true
+      seed_assets:
+        description: "Seed empty asset volumes from Cloud Storage (first deploy)"
+        type: boolean
+        default: true
+  # push:
+  #   branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PROJECT_ID: dook-website-506316
+  REGION: asia-south1
+  ZONE: asia-south1-a
+  # The VM is named after the first app deployed to it. dookadmin is the third
+  # container on that same machine, not a third machine.
+  VM_NAME: dookwebsite
+  AR_REPO: dookadmin
+  IMAGE_NAME: app
+  ADMIN_PORT: 8002
+  # Compose derives this from the directory holding the compose file
+  # (/opt/dookadmin) plus the service name (app).
+  ADMIN_CONTAINER: dookadmin-app-1
+  IMAGES_BUCKET: dook-images-prod
+
+# Its own group: this deploy touches a different compose project from
+# dookwebsite's and dookblog's and need not queue behind them. Still one
+# dookadmin deploy at a time, so two runs cannot race on the VM's state.
+concurrency:
+  group: deploy-dookadmin
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud (keyless)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.WIF_SERVICE_ACCOUNT }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Resolve image tag
+        id: img
+        run: |
+          echo "ref=${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/${IMAGE_NAME}:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+
+      - name: Build image
+        run: docker build --target runtime -t "${{ steps.img.outputs.ref }}" .
+
+      - name: Push image
+        run: docker push "${{ steps.img.outputs.ref }}"
+
+      # Idempotent - safe on the first deploy and every one after. Docker is
+      # already on this VM (dookwebsite put it there), but this must not
+      # assume that.
+      #
+      # uid 33 is www-data inside the container. These directories are written
+      # by php-fpm workers, so they must be owned by it, not by root.
+      - name: Prepare the VM
+        run: |
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command='
+            set -euo pipefail
+            if ! command -v docker >/dev/null 2>&1; then
+              curl -fsSL https://get.docker.com | sudo sh
+            fi
+            sudo mkdir -p /opt/dookadmin \
+                          /etc/dookadmin \
+                          /var/lib/dookadmin/public-dook \
+                          /var/lib/dookadmin/public-signature \
+                          /var/lib/dookadmin/agentitinerary \
+                          /var/lib/dookadmin/public-country-flag \
+                          /var/lib/dookadmin/public-restaurants \
+                          /var/lib/dookadmin/storage-logs
+            sudo chown -R 33:33 /var/lib/dookadmin
+          '
+
+      - name: Upload compose file
+        run: |
+          gcloud compute scp docker-compose.prod.yml \
+            "${VM_NAME}:/tmp/dookadmin-compose.yml" \
+            --zone="$ZONE" --project="$PROJECT_ID" --quiet
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet \
+            --command='sudo mv /tmp/dookadmin-compose.yml /opt/dookadmin/docker-compose.prod.yml'
+
+      # Written to a runner-local file and copied, rather than interpolated
+      # into an ssh command string: the values contain quotes and $ that do not
+      # survive nested shell quoting intact.
+      #
+      # Mode 400, owned by uid 33, because php-fpm's workers read it.
+      - name: Sync env file
+        if: ${{ inputs.sync_env }}
+        env:
+          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
+        run: |
+          if [ -z "$APP_ENV_FILE" ]; then
+            echo "APP_ENV_FILE secret is empty - refusing to write an empty env file." >&2
+            exit 1
+          fi
+          umask 077
+          printf '%s' "$APP_ENV_FILE" > app.env
+          gcloud compute scp app.env "${VM_NAME}:/tmp/dookadmin-app.env" \
+            --zone="$ZONE" --project="$PROJECT_ID" --quiet
+          rm -f app.env
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command='
+            set -euo pipefail
+            sudo install -o 33 -g 33 -m 400 /tmp/dookadmin-app.env /etc/dookadmin/app.env
+            rm -f /tmp/dookadmin-app.env
+          '
+
+      # Log docker in AS ROOT using the deploy account's own short-lived token.
+      # compose runs under sudo, so docker reads /root/.docker/config.json, NOT
+      # the ssh user's ~/.docker where `gcloud auth configure-docker` writes.
+      # It also means the VM itself needs no registry permissions.
+      - name: Pull image on the VM
+        run: |
+          TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::$TOKEN"
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command="
+            set -euo pipefail
+            echo '$TOKEN' | sudo docker login -u oauth2accesstoken --password-stdin https://${REGION}-docker.pkg.dev
+            sudo docker pull '${{ steps.img.outputs.ref }}'
+          "
+
+      # country/flag and images/restaurants are referenced through asset() and
+      # are no longer in the repo (migrated to Cloud Storage), so the image
+      # does not carry them and the mounts would shadow them anyway. Pull them
+      # from the bucket once.
+      #
+      # Guarded on the directory being empty: later deploys must never touch
+      # files uploaded through the admin in the meantime. Those live only on
+      # this volume and overwriting them would be data loss.
+      - name: Seed asset volumes from Cloud Storage (first deploy only)
+        if: ${{ inputs.seed_assets }}
+        run: |
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command="
+            set -euo pipefail
+            seed() {  # seed <local dir> <gcs prefix>
+              if [ -z \"\$(sudo ls -A \"\$1\" 2>/dev/null)\" ]; then
+                echo \"seeding \$1 from gs://${IMAGES_BUCKET}/\$2\"
+                sudo gcloud storage rsync -r \"gs://${IMAGES_BUCKET}/\$2\" \"\$1\" --quiet
+                sudo chown -R 33:33 \"\$1\"
+                echo \"  \$(sudo find \"\$1\" -type f | wc -l) files\"
+              else
+                echo \"\$1 already populated - left untouched\"
+              fi
+            }
+            seed /var/lib/dookadmin/public-country-flag geo/country-flag
+            seed /var/lib/dookadmin/public-restaurants  geo/restaurant
+          "
+
+      - name: Deploy
+        run: |
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command="
+            set -euo pipefail
+            cd /opt/dookadmin
+            sudo env IMAGE='${{ steps.img.outputs.ref }}' docker compose -f docker-compose.prod.yml up -d --remove-orphans
+            sudo docker image prune -f
+            sudo docker logout https://${REGION}-docker.pkg.dev
+          "
+
+      # Checked from inside the container. The port is published on the VM's
+      # loopback, but asserting from within the container proves THIS app
+      # answered rather than whatever else might hold the port.
+      #
+      # A 200 alone is not enough. dookblog's first deploy passed a status-code
+      # check while completely broken, because a neighbouring php-fpm answered.
+      # This container has its own network namespace so that exact failure
+      # cannot recur, but assert on the body regardless - it costs nothing and
+      # a bare 200 proves very little.
+      - name: Health check
+        run: |
+          gcloud compute ssh "$VM_NAME" --zone="$ZONE" --project="$PROJECT_ID" --quiet --command="
+            set -u
+            ok=0
+            for i in \$(seq 1 20); do
+              body=\$(sudo docker exec $ADMIN_CONTAINER \
+                       curl -fsS --max-time 15 http://127.0.0.1:$ADMIN_PORT/login 2>/dev/null || true)
+              if printf '%s' \"\$body\" | grep -q 'csrf-token'; then
+                echo '1/2 admin panel is up and Laravel rendered the login form'
+                ok=1
+                break
+              fi
+              sleep 6
+            done
+            if [ \$ok -ne 1 ]; then
+              echo '1/2 FAILED: the admin never rendered a login form'
+              sudo docker compose -f /opt/dookadmin/docker-compose.prod.yml logs --tail=80
+              exit 1
+            fi
+
+            # The uploads volumes must be writable by uid 33, or every image
+            # upload fails at save() with a permission error that surfaces to
+            # the user as a silent failure rather than an exception.
+            if sudo docker exec -u 33 $ADMIN_CONTAINER \
+                 test -w /var/www/html/public/dook; then
+              echo '2/2 upload volumes are writable by www-data'
+            else
+              echo '2/2 FAILED: /var/www/html/public/dook is not writable by uid 33.'
+              echo '    Uploads would fail. Check ownership of /var/lib/dookadmin on the VM.'
+              exit 1
+            fi
+          "
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### dookadmin deploy"
+            echo "- image: \`${{ steps.img.outputs.ref }}\`"
+            echo "- vm: \`$VM_NAME\` (\`$ZONE\`)"
+            echo "- published on the VM loopback at \`127.0.0.1:$ADMIN_PORT\`, reached through the TLS proxy"
+            echo "- uploads persist under \`/var/lib/dookadmin\` on the VM"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,80 @@
+# Production compose for the dookadmin container on the Compute Engine VM.
+#
+# This is the THIRD app on that box. dookwebsite owns host 80/443 and
+# terminates TLS; dookblog runs inside dookwebsite's network namespace. This
+# one does neither - see the port table in ./Dockerfile.
+#
+#   dookwebsite  ->  host 80 / 443, public
+#   dookblog     ->  8001 inside dookwebsite's namespace, published nowhere
+#   dookadmin    ->  8002, published on the VM's LOOPBACK only
+#
+# Loopback rather than 0.0.0.0 deliberately. adm.dook.bigfat.ai is expected to
+# arrive through the TLS-terminating proxy in front of this container, so the
+# admin panel - a login form for staff - is never exposed directly on the VM's
+# public interface. Nothing in this app should be reachable without going
+# through that proxy.
+#
+# Its own network namespace, unlike dookblog: nothing calls this app over
+# loopback from another container, so there is no reason to inherit
+# dookwebsite's port space and every reason not to (a clash there does not
+# fail loudly - it silently serves the wrong application).
+#
+# IMAGE is substituted by the deploy workflow with the exact tag it just
+# pushed. A real tag rather than ':latest' is what makes it possible to say
+# what is running and to roll back to what ran before.
+
+services:
+  app:
+    image: ${IMAGE:-dookadmin:prod}
+    restart: unless-stopped
+
+    # Published to the VM's loopback only. If the proxy runs in another
+    # container rather than on the host, change this to an explicit network
+    # instead of widening the bind address.
+    ports:
+      - "127.0.0.1:8002:8002"
+
+    # Written by the deploy workflow, owned by uid 33 (www-data) because
+    # php-fpm's WORKERS read it, not its root master process. The Dockerfile
+    # runs `artisan config:cache`, after which Laravel stops reading .env and
+    # the app's ~300 direct env() calls resolve from the process environment -
+    # which is why this is env_file rather than a mounted .env.
+    env_file:
+      - /etc/dookadmin/app.env
+
+    volumes:
+      # Everything below is data the app writes at request time. It is NOT in
+      # the image (.gitignore and .dockerignore both exclude it), so without
+      # these mounts every upload is lost when the container is replaced.
+      #
+      # public/dook holds uploaded package and POI images, the generated
+      # itinerary PDFs (public/dook/pdf, ~171 MB) and uploaded CVs
+      # (public/dook/resume).
+      - /var/lib/dookadmin/public-dook:/var/www/html/public/dook
+
+      # Employee photographs and signature scans. Mirrored in
+      # gs://dook-images-private, which is the authoritative copy.
+      - /var/lib/dookadmin/public-signature:/var/www/html/public/signature/images
+
+      # Agent itinerary uploads.
+      - /var/lib/dookadmin/agentitinerary:/var/www/html/public/agentitinerary
+
+      # Site image assets that were migrated to Cloud Storage and are no longer
+      # in the repo, but are still referenced through asset() rather than
+      # img_url(). Seeded from the bucket on first deploy by the workflow.
+      # Remove these two once those references go through img_url().
+      - /var/lib/dookadmin/public-country-flag:/var/www/html/public/country/flag
+      - /var/lib/dookadmin/public-restaurants:/var/www/html/public/images/restaurants
+
+      # Logs on the host, so they survive the container and can be read
+      # without docker exec.
+      - /var/lib/dookadmin/storage-logs:/var/www/html/storage/logs
+
+    # The image's own HEALTHCHECK covers process liveness. This adds nothing,
+    # so it is left to the Dockerfile.
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
