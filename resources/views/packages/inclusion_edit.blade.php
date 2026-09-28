@@ -81,7 +81,7 @@
                         </div>
                         {{-- <select class="form-control icons" name="icon[]" id="icons">
                             @foreach($inclusion_icon as $row)
-                                <option value="{{$row->icon}}" data-image="{{asset('dook/images/inclusions/'.$row->icon)}}">{{$row->name}}</option>
+                                <option value="{{$row->icon}}" data-image="{{img_url('inclusions', $row->icon)}}">{{$row->name}}</option>
                             @endforeach
                         </select> --}}
                     </div>

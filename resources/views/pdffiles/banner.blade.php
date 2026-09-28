@@ -143,7 +143,7 @@
 			<div class="" style="position: relative;width: 100%;height: 100%">
 				<div class="leftcornor" style="background: #b14e51;height: 50px;width: 80%;position: absolute;bottom:0;right: 0;border:0;outline:0;"></div>
 				<div style="width:100%;height:622px;overflow:hidden;">
-					<img src="https://adm.dookinternational.com/dook/images/package/{{$pdf_banner->banner_image}}" alt="" style="width: 100%;height:100%;object-fit: cover;">
+					<img src="{{ img_url('package', $pdf_banner->banner_image) }}" alt="" style="width: 100%;height:100%;object-fit: cover;">
 				</div>
 				<img src="{{asset('media/itinerary/cover_graphic.png')}}" alt="" style="max-width: 100%;position: absolute;top: 0;left: 0;width: 100%;">
 				<div style="position: absolute;bottom:50px;right: 80px;width: 370px;text-align: center;color: #fff;">

@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner1" onclick="triggerImage1()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image1}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner1" onclick="triggerImage1()" src="{{ img_url('poi', $basic_detail_data->attraction_image1) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner2" onclick="triggerImage2()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image2}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner2" onclick="triggerImage2()" src="{{ img_url('poi', $basic_detail_data->attraction_image2) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner3" onclick="triggerImage3()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image3}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner3" onclick="triggerImage3()" src="{{ img_url('poi', $basic_detail_data->attraction_image3) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner4" onclick="triggerImage4()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image4}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner4" onclick="triggerImage4()" src="{{ img_url('poi', $basic_detail_data->attraction_image4) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner5" onclick="triggerImage5()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image5}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner5" onclick="triggerImage5()" src="{{ img_url('poi', $basic_detail_data->attraction_image5) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="banner6" onclick="triggerImage6()" src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image6}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="banner6" onclick="triggerImage6()" src="{{ img_url('poi', $basic_detail_data->attraction_image6) }}" class="fetured_images_view" width="80" height="80"/>
                             </div>
                         </div>
                         <br>
@@ -245,7 +245,7 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-right:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image1}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image1) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
                             <div>
@@ -257,7 +257,7 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-left:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image2}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image2) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
                             <div>
@@ -269,7 +269,7 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-right:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image3}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image3) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
                             <div>
@@ -281,7 +281,7 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-left:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image4}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image4) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
                             <div>
@@ -293,7 +293,7 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-right:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image5}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image5) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
                             <div>
@@ -305,10 +305,10 @@
                         <div style="display: flex;margin-bottom:10px;width: 50%;padding-left:7px;">
                             <div>
                                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image6}}" style="width:50px;height:50px;object-fit:cover;">
+                                    <img src="{{ img_url('poi', $basic_detail_data->attraction_image6) }}" style="width:50px;height:50px;object-fit:cover;">
                                 </div>
                             </div>
-                            <!-- <img src="https://adm.dookinternational.com/dook/images/poi/{{$basic_detail_data->attraction_image6}}" style="width:50px;height:50px;object-fit:cover;border-radius:50%;float:left;margin-right:15px;"> -->
+                            <!-- <img src="{{ img_url('poi', $basic_detail_data->attraction_image6) }}" style="width:50px;height:50px;object-fit:cover;border-radius:50%;float:left;margin-right:15px;"> -->
                             <div>
                                 <h3>{{$basic_detail_data->attraction_name6}}</h3>
                                 <p>{{$basic_detail_data->attraction_address6}}</p>

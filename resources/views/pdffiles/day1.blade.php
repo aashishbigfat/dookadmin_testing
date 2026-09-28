@@ -187,9 +187,9 @@
         <h2 style="color:#fff;">{{$pdf_itineraries->name}}</h2>
         <div style="position: absolute;bottom:-50%;z-index:10;right:5%;border:10px solid #fff;border-radius:50%;overflow: hidden;width:200px;height:200px;">
             @if($pdf_itineraries->status == 0 && $pdf_itineraries->pac_image_sts == 1)
-            <img src="https://adm.dookinternational.com/dook/images/package/{{$pdf_itineraries->image}}" style="width:100%;height:100%;object-fit:cover;">
+            <img src="{{ img_url('package', $pdf_itineraries->image) }}" style="width:100%;height:100%;object-fit:cover;">
             @else
-            <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_itineraries->image}}" style="width:100%;height:100%;object-fit:cover;">
+            <img src="{{ img_url('poi', $pdf_itineraries->image) }}" style="width:100%;height:100%;object-fit:cover;">
             @endif
         </div>
     </div>
@@ -197,9 +197,9 @@
         <div style="position: absolute;top: -130px;">
             <div class="Poi-imgDaywise">
                 @if($pdf_itineraries->status == 0 && $pdf_itineraries->pac_image_sts == 1)
-                <img src="https://adm.dookinternational.com/dook/images/package/{{$pdf_itineraries->banner_image}}" style="width:100%;height:100%;object-fit:cover;">
+                <img src="{{ img_url('package', $pdf_itineraries->banner_image) }}" style="width:100%;height:100%;object-fit:cover;">
                 @else
-                <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_itineraries->banner_image}}" style="width:100%;height:100%;object-fit:cover;">
+                <img src="{{ img_url('poi', $pdf_itineraries->banner_image) }}" style="width:100%;height:100%;object-fit:cover;">
                 @endif
             </div>
             <div class="dayItineraryDesc_dook">{!!$pdf_itineraries->description!!}</div>
@@ -217,7 +217,7 @@
             <div style="display:block;margin-bottom:10px;width:350px;">
                 <div style="display:inline-block;width:50px;margin-right:5px">
                     <div style="width:50px;height:50px;border-radius:50%;overflow: hidden;">
-                        <img src="https://adm.dookinternational.com/dook/images/poi/{{$top_pois->image}}" style="width:50px;height:50px;object-fit:cover;">
+                        <img src="{{ img_url('poi', $top_pois->image) }}" style="width:50px;height:50px;object-fit:cover;">
                     </div>
                 </div>
                 <div style="display:inline-block;width:285px;vertical-align: top;">

@@ -328,10 +328,10 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-right:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image1}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image1) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
-            <!-- <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image1}}" style="width:50px;height:50px;object-fit:cover;border-radius:50%;float:left;margin-right:15px;"> -->
+            <!-- <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image1) }}" style="width:50px;height:50px;object-fit:cover;border-radius:50%;float:left;margin-right:15px;"> -->
             <div style="width:304px;">
                 <h3>{{$pdf_basic_detail->attraction_name1}}</h3>
                 <p>{{$pdf_basic_detail->attraction_address1}}</p>
@@ -341,7 +341,7 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-left:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image2}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image2) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
             <div style="width:304px;">
@@ -353,7 +353,7 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-right:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image3}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image3) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
             <div style="width:304px;">
@@ -365,7 +365,7 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-left:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image4}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image4) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
             <div style="width:304px;">
@@ -377,7 +377,7 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-right:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image5}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image5) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
             <div style="width:304px;">
@@ -389,7 +389,7 @@
         <div style="display: flex;margin-bottom:10px;width: 376px;padding-left:7px;">
             <div>
                 <div style="width:50px;height:50px;border-radius:50%;margin-right:15px;overflow:hidden;">
-                    <img src="https://adm.dookinternational.com/dook/images/poi/{{$pdf_basic_detail->attraction_image6}}" style="width:50px;height:50px;object-fit:cover;">
+                    <img src="{{ img_url('poi', $pdf_basic_detail->attraction_image6) }}" style="width:50px;height:50px;object-fit:cover;">
                 </div>
             </div>
             <div style="width:304px;">

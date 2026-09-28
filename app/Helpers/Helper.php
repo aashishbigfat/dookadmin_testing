@@ -7,6 +7,57 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
 
+if (!function_exists('img_base')) {
+    /**
+     * Base URL for a module's image folder, with no trailing slash.
+     *
+     * Use this only where the filename is appended elsewhere, such as inside a
+     * JavaScript string. Prefer img_url() when the filename is known.
+     */
+    function img_base($module)
+    {
+        $base = rtrim(config('images.base_url'), '/');
+
+        if (config('images.layout') === 'gcs') {
+            $folder = config('images.folders.' . $module, $module);
+        } else {
+            $folder = trim(config('images.legacy_path'), '/') . '/' . $module;
+        }
+
+        return $base . '/' . trim($folder, '/');
+    }
+}
+
+if (!function_exists('img_url')) {
+    /**
+     * URL for an uploaded image.
+     *
+     * Accepts img_url('poi', $row->image) or img_url('poi/'.$row->image).
+     * Values that are already absolute URLs are returned untouched, and an
+     * empty filename yields the folder URL with a trailing slash, which is what
+     * the hardcoded paths this replaced produced.
+     */
+    function img_url($module, $file = null)
+    {
+        if ($file === null) {
+            $parts  = explode('/', ltrim((string) $module, '/'), 2);
+            $module = $parts[0];
+            $file   = isset($parts[1]) ? $parts[1] : '';
+        }
+
+        $file = trim((string) $file);
+
+        if (preg_match('#^(https?:)?//#i', $file)) {
+            return $file;
+        }
+
+        $segments = array_filter(explode('/', $file), 'strlen');
+        $path     = implode('/', array_map('rawurlencode', $segments));
+
+        return img_base($module) . '/' . $path;
+    }
+}
+
 if (!function_exists('generateSignedUrl')) {
     function generateSignedUrl($imagePath)
     {

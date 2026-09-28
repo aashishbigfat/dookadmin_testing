@@ -98,7 +98,7 @@ class FixedDeparturePointOfInterestController extends Controller
                 }
             }
             //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
-            $urlS3 = url('/dook/images/poi/').'/';
+            $urlS3 = img_base('poi').'/';
             if($request->ajax()){
                 return view('departure.destination_poi_list',compact('poi_list','exp_dest','urlS3'));
             }

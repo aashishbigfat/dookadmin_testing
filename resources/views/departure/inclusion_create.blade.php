@@ -45,7 +45,7 @@
                         <label>
                           <input type="hidden" name="icons[]" value="{{$inclusion_master->icon}}">
                           <input type="checkbox" class="checkbox_name" name="names[]" value="{{$inclusion_master->name}}{{$loop->index}}">
-                            <img src="{{asset('dook/images/inclusions/'.$inclusion_master->icon)}}" alt="icon" width="12">
+                            <img src="{{img_url('inclusions', $inclusion_master->icon)}}" alt="icon" width="12">
                             {{$inclusion_master->name}}
                         </label>
                       </div>
@@ -77,7 +77,7 @@
                       <div class="inclusionSelect_Icon">
                           @foreach($inclusion_icon as $key => $row)
                               <div class="selectedIcon">
-                                  <img src="{{asset('dook/images/inclusions/'.$row->icon)}}" alt="icon" onclick="selectedIcon({{str_replace(' ', '', $row->name)}})" id="clickID{{$key}}">
+                                  <img src="{{img_url('inclusions', $row->icon)}}" alt="icon" onclick="selectedIcon({{str_replace(' ', '', $row->name)}})" id="clickID{{$key}}">
                                   <input type="radio" name="inclusion-icon" id="{{str_replace(' ', '', $row->name)}}" value="{{$row->icon}}">
                               </div>
                           @endforeach

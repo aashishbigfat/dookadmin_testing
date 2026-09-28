@@ -56,7 +56,7 @@
                                         // echo "Current Image W:". $width.",";
                                         // echo "H:". $height;
                                     ?>
-                                      <img id="banner" onclick="triggerImage()" src="https://adm.dookinternational.com/dook/images/package/{{$banner_data->banner_image}}" class="fetured_images_view" width="80" height="80"/>
+                                      <img id="banner" onclick="triggerImage()" src="{{ img_url('package', $banner_data->banner_image) }}" class="fetured_images_view" width="80" height="80"/>
                                   </div>
                                 </div>
                                 <br>
@@ -82,7 +82,7 @@
                         <div size="A4" style="position: relative" id="container">
                             <div class="" style="position: relative;width: 100%;height: 100%">
                                 <div class="leftcornor" style="background: #b14e51;height: 50px;width: 80%;position: absolute;bottom:0;right: 0;"></div>
-                                <img src="https://adm.dookinternational.com/dook/images/package/{{$banner_data->banner_image}}" alt="" style="width: 100%;object-fit: cover;height: 70%;">
+                                <img src="{{ img_url('package', $banner_data->banner_image) }}" alt="" style="width: 100%;object-fit: cover;height: 70%;">
                                 <img src="{{asset('media/itinerary/cover_graphic.png')}}" alt="" style="max-width: 100%;position: absolute;top: 0;left: 0;width: 100%;">
                                 <div style="position: absolute;bottom:50px;right: 80px;width: 370px;text-align: center;color: #fff;">
                                     <img src="https://www.dookinternational.com/images/logo.png" alt="" style="max-width:100%;height: auto;margin:0 auto 12px;">

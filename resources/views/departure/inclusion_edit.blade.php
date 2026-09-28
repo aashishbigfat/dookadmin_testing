@@ -43,7 +43,7 @@
                           <input type="hidden" name="icons[]" value="{{$inclusionedit['icon']}}">
                           <input type="checkbox" class="checkbox_name" name="names[]" value="{{$inclusionedit['name']}}{{$loop->index}}" @foreach($inclusione as $inclupkg) @if ($inclusionedit['name'] == $inclupkg->name) {{'checked'}} @endif  @endforeach>
                             {{$inclusionedit['name']}} 
-                            <img src="{{asset('dook/images/inclusions/'.$inclusionedit['icon'])}}" style="width:12px;">
+                            <img src="{{img_url('inclusions', $inclusionedit['icon'])}}" style="width:12px;">
                         </label>
                       </div>
                       <div class="form-group">
@@ -74,14 +74,14 @@
                         <div class="inclusionSelect_Icon">
                             @foreach($inclusion_icon as $key => $row)
                                 <div class="selectedIcon">
-                                    <img src="{{asset('dook/images/inclusions/'.$row->icon)}}" alt="icon" onclick="selectedIcon({{str_replace(' ', '', $row->name)}})" id="clickID{{$key}}">
+                                    <img src="{{img_url('inclusions', $row->icon)}}" alt="icon" onclick="selectedIcon({{str_replace(' ', '', $row->name)}})" id="clickID{{$key}}">
                                     <input type="radio" name="inclusion-icon" id="{{str_replace(' ', '', $row->name)}}" value="{{$row->icon}}">
                                 </div>
                             @endforeach
                         </div>
                         {{-- <select class="form-control icons" name="icon[]" id="icons">
                             @foreach($inclusion_icon as $row)
-                                <option value="{{$row->icon}}" data-image="{{asset('dook/images/inclusions/'.$row->icon)}}">{{$row->name}}</option>
+                                <option value="{{$row->icon}}" data-image="{{img_url('inclusions', $row->icon)}}">{{$row->name}}</option>
                             @endforeach
                         </select> --}}
                     </div>

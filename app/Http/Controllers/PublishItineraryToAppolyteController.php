@@ -18,7 +18,7 @@ class PublishItineraryToAppolyteController extends Controller
                         ->select('title','no_of_nights','no_of_days','tenant_id','description','conditions','dep_dook_ref_id as package_id','image as fimage')
                         ->first();
         if($basic_detail){
-            $basic_detail->image = "https://adm.dookinternational.com/dook/images/package/".$basic_detail->fimage;
+            $basic_detail->image = img_url('package', $basic_detail->fimage);
             $destination_id = DB::table('departure_destinations')
                             ->where('departure_id', $id)
                             ->distinct()

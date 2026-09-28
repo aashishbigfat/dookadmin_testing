@@ -18,7 +18,7 @@ class PublishItineraryToFinderController extends Controller
     					->first();
 		if($basic_detail){
 			$basic_detail->banner_images = $basic_detail->banner_image;
-			$basic_detail->banner_image = 'https://adm.dookinternational.com/dook/images/package/'.$basic_detail->banner_image;
+			$basic_detail->banner_image = img_url('package', $basic_detail->banner_image);
 
 			$destination_id = DB::table('departure_destinations')
 							->where('departure_id', $id)
@@ -72,7 +72,7 @@ class PublishItineraryToFinderController extends Controller
 						->whereNotNull('banner_image')
 						->value('banner_image');
 				if($poi_img){
-					$itinearay->image = 'https://adm.dookinternational.com/dook/images/poi/'.$poi_img;
+					$itinearay->image = img_url('poi', $poi_img);
 				}else{
 					$itinearay->image = '';
 				}
@@ -86,7 +86,7 @@ class PublishItineraryToFinderController extends Controller
 						
 				if(count($pois)){
 					foreach ($pois as $key => $value) {
-						$value->image = 'https://adm.dookinternational.com/dook/images/poi/'.$value->image;
+						$value->image = img_url('poi', $value->image);
 						
 						$poi_dest = Destination::where('id', $value->destination_id)
 								->select('id as dest_id','dest_name','country_name','country_iso_3','country_iso_2')
@@ -117,7 +117,7 @@ class PublishItineraryToFinderController extends Controller
 					->get();
 				if(count($pois)){
 					foreach ($pois as $key => $pvalue) {
-						$pvalue->image = 'https://adm.dookinternational.com/dook/images/poi/'.$pvalue->image;
+						$pvalue->image = img_url('poi', $pvalue->image);
 						$poi_dest = Destination::where('id', $pvalue->destination_id)
 								->select('id as dest_id','dest_name','country_name','country_iso_3','country_iso_2')
 								->first();

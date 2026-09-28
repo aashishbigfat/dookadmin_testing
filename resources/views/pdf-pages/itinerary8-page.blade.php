@@ -31,7 +31,7 @@
                                 </div>
                               </div>
                               <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="itiBannerImage0{{$loop->index}}" onclick="triggerImageBanner0{{$loop->index}}()" src="https://adm.dookinternational.com/dook/images/poi/{{$iti_data->banner_image}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="itiBannerImage0{{$loop->index}}" onclick="triggerImageBanner0{{$loop->index}}()" src="{{ img_url('poi', $iti_data->banner_image) }}" class="fetured_images_view" width="80" height="80"/>
                               </div>
                               <div class="col-md-3 col-lg-3 col-sm-12">
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                                 </div>
                               </div>
                               <div class="col-md-3 col-lg-3 col-sm-12">
-                                  <img id="imagePoi0{{$loop->index}}" onclick="triggerImagePoi0{{$loop->index}}()" src="https://adm.dookinternational.com/dook/images/poi/{{$iti_data->image}}" class="fetured_images_view" width="80" height="80"/>
+                                  <img id="imagePoi0{{$loop->index}}" onclick="triggerImagePoi0{{$loop->index}}()" src="{{ img_url('poi', $iti_data->image) }}" class="fetured_images_view" width="80" height="80"/>
                               </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-lg-3 col-sm-12">
-                              <img id="itinerary_img0{{$loop->index}}" onclick="triggerImageItinerary0{{ $loop->index }}()" src="https://adm.dookinternational.com/dook/images/poi/{{$poi->image}}" class="fetured_images_view" width="80" height="80"/>
+                              <img id="itinerary_img0{{$loop->index}}" onclick="triggerImageItinerary0{{ $loop->index }}()" src="{{ img_url('poi', $poi->image) }}" class="fetured_images_view" width="80" height="80"/>
                         </div>
                         @endforeach
                         </div>
@@ -108,9 +108,9 @@
                         <h2 style="color: #fff;font-size: 1.8rem;margin-top: 5px;">{{$itineraries->name}}</h2>
                         <div style="position: absolute;bottom:-50%;z-index:10;right:5%;border:10px solid #fff;border-radius:50%;overflow: hidden;width:200px;height:200px;">
                             @if($itineraries->status == 0 && $itineraries->pac_image_sts == 1)
-                            <img src="https://adm.dookinternational.com/dook/images/package/{{$itineraries->image}}" style="width:100%;height:100%;object-fit:cover;">
+                            <img src="{{ img_url('package', $itineraries->image) }}" style="width:100%;height:100%;object-fit:cover;">
                             @else
-                            <img src="https://adm.dookinternational.com/dook/images/poi/{{$itineraries->image}}" style="width:100%;height:100%;object-fit:cover;">
+                            <img src="{{ img_url('poi', $itineraries->image) }}" style="width:100%;height:100%;object-fit:cover;">
                             @endif
                         </div>
                     </div>
@@ -118,9 +118,9 @@
                         <div style="position: absolute;top: -130px;">
                             <div class="Poi-imgDaywise Poi-imgDaywise8">
                                 @if($itineraries->status == 0 && $itineraries->pac_image_sts == 1)
-                                <img src="https://adm.dookinternational.com/dook/images/package/{{$itineraries->banner_image}}" style="width:100%;height:100%;object-fit:cover;">
+                                <img src="{{ img_url('package', $itineraries->banner_image) }}" style="width:100%;height:100%;object-fit:cover;">
                                 @else
-                                <img src="https://adm.dookinternational.com/dook/images/poi/{{$itineraries->banner_image}}" style="width:100%;height:100%;object-fit:cover;">
+                                <img src="{{ img_url('poi', $itineraries->banner_image) }}" style="width:100%;height:100%;object-fit:cover;">
                                 @endif
                             </div>
                             <div class="dayItineraryDesc_dook">{!!$itineraries->description!!}</div>
@@ -138,7 +138,7 @@
                             <div style="display:block;margin-bottom:10px;width:350px;">
                                 <div style="display:inline-block;width:65px;">
                                     <div style="width:50px;height:50px;border-radius:50%;overflow: hidden;">
-                                        <img src="https://adm.dookinternational.com/dook/images/poi/{{$top_pois->image}}" style="width:50px;height:50px;object-fit:cover;">
+                                        <img src="{{ img_url('poi', $top_pois->image) }}" style="width:50px;height:50px;object-fit:cover;">
                                     </div>
                                 </div>
                                 <div style="display:inline-block;width:280px;">

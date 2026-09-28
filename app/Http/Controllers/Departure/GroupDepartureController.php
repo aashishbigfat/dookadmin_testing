@@ -51,7 +51,7 @@ class GroupDepartureController extends Controller
     public function groupPackagesIndex(Request $request)
     {
         //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
-        $urlS3 = url('/dook/images/package/').'/';
+        $urlS3 = img_base('package').'/';
         //$from_date = $request->from_date;
         //$from = date("yy-m-d", strtotime($from_date));
         //$to_date = $request->to_date;
@@ -987,7 +987,7 @@ class GroupDepartureController extends Controller
     public function groupPackagesEdit(Request $request, $id)
     {
         //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
-        $urlS3 = url('/dook/images/package/').'/';
+        $urlS3 = img_base('package').'/';
         $route_ids = $request->route('id'); 
         $route_id = (int)$route_ids;
         $departures  = Departure::where('id',$id)

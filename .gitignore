@@ -80,3 +80,23 @@ Homestead.json
 # Stray PHP error logs (were committed under public/signature/)
 error_log
 **/error_log
+
+# ---------------------------------------------------------------
+# Uploaded content — migrated to Google Cloud Storage, 28 Sep 2026
+# ---------------------------------------------------------------
+# 17,004 objects to gs://dook-images-prod and 609 to gs://dook-images-private.
+# See explainers/images_gcp.md. /public/dook/ is already excluded above, which
+# covers the bulk (poi, package, country, …). These are the rest.
+#
+# public/signature/ is the important one: 290 employee photographs and 319
+# signature scans, named after the people themselves. This repository is
+# public.
+/public/signature/
+/public/country/flag/
+/public/images/restaurants/
+/public/promotions/
+/public/mailer/images/
+
+# Runtime-written upload targets, not source.
+/public/agentitinerary/
+/public/images/uploads/
