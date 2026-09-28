@@ -301,7 +301,7 @@ include('auth.php');
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr id="csi_countryList">
+                                    <!-- <tr id="csi_countryList">
                                         <td style="border-top:4px solid #e20911;padding-top:12px;">
                                             <table>
                                                 <tbody>
@@ -318,7 +318,7 @@ include('auth.php');
                                                 </tbody>
                                             </table>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

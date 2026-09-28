@@ -487,6 +487,11 @@ Route::get('/enquiry-report', 'EnquiryController@generateReport')->name('enquiry
 	Route::post('/signature_store', 'SignatureController@store')->name('signature_store');
 	Route::post('signature_update', 'SignatureController@update')->name('signature_update');
 	Route::post('signature_delete/{id}', 'SignatureController@Delete')->name('signature_delete');
+
+	// B2B Partnerships
+	Route::get('/b2b-partnerships', 'B2BPartnershipController@index')->name('b2b_partnerships');
+	Route::get('/b2b-partnerships/export', 'B2BPartnershipController@export')->name('b2b_partnerships.export');
+	Route::get('/b2b-partnerships/{id}', 'B2BPartnershipController@show')->where('id', '[0-9]+')->name('b2b_partnerships.show');
 	
 	// Dollor RS Update
 	Route::post('/rupee_dollar/{id}', 'Departure\HotelCategoryController@rupeeDollorUpdate')->name('ruppe_dollor_update');

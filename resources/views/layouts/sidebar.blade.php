@@ -175,7 +175,7 @@
         </ul>
       </li>
 
-      <li class="treeview @if ($current_controller=='reviews') echo menu-open @endif">
+      <li class="treeview @if ($current_controller=='reviews' || $current_controller=='b2b_partnerships') menu-open @endif">
         <a href="#">
           <i class="fa fa-plane"></i>
           <span>Others</span>
@@ -183,7 +183,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu @if ($current_controller=='reviews') echo topDestBlock @endif">
+        <ul class="treeview-menu @if ($current_controller=='reviews' || $current_controller=='b2b_partnerships') topDestBlock @endif">
           <li class="@if ($current_controller=='searching_destinations' ) echo active @endif">
             <a href="{{route('searching_destinations')}}"><i class="fa fa-question-circle" aria-hidden="true"></i> Dook
               Searching Destination</a>
@@ -205,6 +205,9 @@
           </li>
           <li class="@if ($current_controller=='create_signature' ) echo active @endif">
             <a href="{{route('signature_upload')}}"><i class="fa fa-upload"></i>Signature</a>
+          </li>
+          <li class="@if ($current_controller=='b2b_partnerships' ) active @endif">
+            <a href="{{route('b2b_partnerships')}}"><i class="fa fa-handshake-o"></i>B2B Partnerships</a>
           </li>
         </ul>
       </li>

@@ -1005,7 +1005,7 @@
 
         $.ajax({
             type:"get",
-            url: 'https://cors-anywhere.herokuapp.com/'+'https://maps.googleapis.com/maps/api/place/details/json?placeid='+placeid+'&fields=name,rating,url,address_component,types,website,geometry,photo,formatted_phone_number,international_phone_number,icon,price_level,user_ratings_total,opening_hours/weekday_text&key={{ config('services.google_maps.key') }}',
+            url: 'https://cors-anywhere.herokuapp.com/'+'https://maps.googleapis.com/maps/api/place/details/json?placeid='+placeid+'&fields=name,rating,url,address_component,types,website,geometry,photo,formatted_phone_number,international_phone_number,icon,price_level,user_ratings_total,opening_hours/weekday_text&key=AIzaSyDeaIvmws05Lghj6CUUMBvM68Y2qBftMVw',
             crossDomain: false,
 
             success: function(data) {
@@ -1037,7 +1037,7 @@
 }   
 </script>
 <script
-  src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key={{ config('services.google_maps.key') }}">
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyDeaIvmws05Lghj6CUUMBvM68Y2qBftMVw">
 </script>
 
 
