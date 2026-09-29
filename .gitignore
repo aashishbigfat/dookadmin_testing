@@ -91,7 +91,7 @@ error_log
 # public/signature/ is the important one: 290 employee photographs and 319
 # signature scans, named after the people themselves. This repository is
 # public.
-/public/signature/
+/public/signature/images/
 /public/country/flag/
 /public/images/restaurants/
 /public/promotions/

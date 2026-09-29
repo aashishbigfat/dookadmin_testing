@@ -3,8 +3,9 @@
 # dookadmin (adm.dook.bigfat.ai) - the Laravel 9 admin panel behind the Dook
 # travel site: packages, departures, landing pages, leads (including the Meta
 # lead sync), PDFs and signatures. It reads and writes the SAME `dookweb`
-# database dookwebsite serves from, over the same private-IP Cloud SQL host
-# (192.168.4.7) reachable only through the VM's OpenVPN tunnel.
+# database dookwebsite serves from, now on Cloud SQL at 34.93.48.191. The old
+# 192.168.4.7 host, reachable only through the VM's OpenVPN tunnel, is retired;
+# no tunnel is required any more.
 #
 # Built to run as a THIRD container on the Compute Engine VM that already
 # hosts dookwebsite and dookblog.
