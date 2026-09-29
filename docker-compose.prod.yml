@@ -28,11 +28,31 @@ services:
     image: ${IMAGE:-dookadmin:prod}
     restart: unless-stopped
 
-    # Published to the VM's loopback only. If the proxy runs in another
-    # container rather than on the host, change this to an explicit network
-    # instead of widening the bind address.
+    # Published to the VM's loopback only, for debugging from the VM itself
+    # (curl / an SSH tunnel). This is NOT how the public reaches the app -
+    # dookwebsite's nginx does, over the shared network below.
+    #
+    # Left on loopback deliberately. The GCP firewall only opens 80/443
+    # (allow-dookwebsite-web), so binding 0.0.0.0 would not expose 8002 to the
+    # internet today, but it would be exposed the moment someone widens a
+    # firewall rule. Loopback does not depend on that.
     ports:
       - "127.0.0.1:8002:8002"
+
+    # Joined to dookwebsite's compose network so its nginx can reach this
+    # container BY NAME as http://dookadmin-app-1:8002.
+    #
+    # Needed because dookwebsite terminates TLS for *.bigfat.ai inside its own
+    # container, where 127.0.0.1 is itself - it cannot see the host's
+    # 127.0.0.1:8002 publish above. Two containers on separate networks cannot
+    # proxy to each other at all, which is the state this fixes.
+    #
+    # This is a shared network, not a shared namespace: unlike dookblog, this
+    # container keeps its own port space, so a bind clash here cannot silently
+    # serve the wrong application.
+    networks:
+      - default
+      - dookwebsite
 
     # Written by the deploy workflow, owned by uid 33 (www-data) because
     # php-fpm's WORKERS read it, not its root master process. The Dockerfile
@@ -78,3 +98,15 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+networks:
+  # dookwebsite's own compose network, created by ITS deploy. Declared external
+  # so this stack attaches to it rather than trying to own it - compose must
+  # never manage a network another stack depends on.
+  #
+  # If dookwebsite is ever redeployed under a different project name this name
+  # changes with it and this stack fails to start with "network not found",
+  # which is the loud failure worth having.
+  dookwebsite:
+    external: true
+    name: dookwebsite_default
