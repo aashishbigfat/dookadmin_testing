@@ -36,6 +36,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Upload bucket
+    |--------------------------------------------------------------------------
+    |
+    | Where gcs_put() writes. Deliberately NOT the BUCKET_NAME env value, which
+    | still points at the retired project's bucket and is read by the older
+    | StorageClient blocks; this is a separate key so the two can be moved
+    | independently.
+    |
+    */
+
+    'bucket' => env('IMAGE_BUCKET', 'dook-images-prod'),
+
+    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Module to bucket folder
     |--------------------------------------------------------------------------
     |

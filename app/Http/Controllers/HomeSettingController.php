@@ -138,7 +138,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //     $store->image = $imageName; 
         // }
 
@@ -181,7 +181,7 @@ class HomeSettingController extends Controller
         //      $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 100);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //     $store->mobile_image = $imageName; 
         // }
         
@@ -262,7 +262,7 @@ class HomeSettingController extends Controller
         //       $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //     $store->image = $fileName; 
         // }
         // if($request->mobile_image){
@@ -279,7 +279,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //     $store->mobile_image = $fileName; 
         // }
         
@@ -332,7 +332,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //       $store->exp_image1 = $fileName;
         // }
         $store->experience2 = $request->experience2;
@@ -374,7 +374,7 @@ class HomeSettingController extends Controller
         //      $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //      $store->exp_image2 = $fileName; 
 
         // }
@@ -416,7 +416,7 @@ class HomeSettingController extends Controller
         //       $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->exp_image3 = $fileName;
         // }
         $store->experience4 = $request->experience4;
@@ -482,7 +482,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->exp_image4 = $fileName;
         // }
         $store->save();
@@ -506,7 +506,7 @@ class HomeSettingController extends Controller
                          $ext = 'webp';
                         $convertImage = Image::make($image)->encode($ext, 60);
                         $fileName = uniqid().'.'.$ext;
-                        Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+                        gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
                        $storePkg->package_image = $fileName; 
                     }
                     $storePkg->save();
@@ -561,7 +561,7 @@ class HomeSettingController extends Controller
             //       $ext = 'webp';
             //     $convertImage = Image::make($image)->encode($ext, 60);
             //     $fileName = uniqid().'.'.$ext;
-            //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+            //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
             //    $storeAct->activity_banner = $fileName; 
             // }
 
@@ -609,7 +609,7 @@ class HomeSettingController extends Controller
             //     $ext = 'webp';
             //     $convertImage = Image::make($image)->encode($ext, 60);
             //     $fileName = uniqid().'.'.$ext;
-            //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+            //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
             //     $store->image = $fileName; 
             // }
             $store->save();
@@ -667,7 +667,7 @@ class HomeSettingController extends Controller
         //        $ext = 'webp';
         //         $convertImage = Image::make($image)->encode($ext, 60);
         //         $fileName = uniqid().'.'.$ext;
-        //         Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //         gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //         $store->image = $fileName; 
         // }
         $store->save();
@@ -929,7 +929,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image1 = $fileName; 
         // }
         $store->region2 = $request->region2;
@@ -972,7 +972,7 @@ class HomeSettingController extends Controller
         //      $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image2 = $fileName; 
         // }
         $store->region3 = $request->region3;
@@ -1014,7 +1014,7 @@ class HomeSettingController extends Controller
         //      $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image3 = $fileName; 
         // }
         $store->region4 = $request->region4;
@@ -1047,7 +1047,7 @@ class HomeSettingController extends Controller
         //      $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image4 = $fileName; 
         // }
          $store->region5 = $request->region5;
@@ -1080,7 +1080,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image5 = $fileName; 
         // }
          $store->region6 = $request->region6;
@@ -1113,7 +1113,7 @@ class HomeSettingController extends Controller
         //     $ext = 'webp';
         //     $convertImage = Image::make($image)->encode($ext, 60);
         //     $fileName = uniqid().'.'.$ext;
-        //     Storage::disk('s3')->put('com/home/'.$fileName, $convertImage);
+        //     gcs_put('com/home/'.$fileName, $convertImage, 'image/webp');
         //    $store->region_image6 = $fileName; 
         // }
         $store->save();

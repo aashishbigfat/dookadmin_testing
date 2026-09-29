@@ -306,7 +306,7 @@ class GroupPointOfInterestController extends Controller
                 //$img = Image::make($image)->fit(464, 260)->save( public_path($relPath . $imageName) );
                 $imageFile = Image::make($image)->fit(464, 260)->stream();
                 // $imageFile = $imageFile->__toString();
-                Storage::disk('spaces')->put('dook/images/poi/'.$imageName, $imageFile, 'public');
+                gcs_put('dook/images/poi/'.$imageName, $imageFile, 'image/jpeg');
                 // $imageFile = Image::make($image)->fit(464, 260)->stream();
                 // $imageFile = $imageFile->__toString();
                 // $p = Storage::disk('s3')->put('dook/images/poi/'.$imageName, $imageFile, 'public'); 
@@ -319,7 +319,7 @@ class GroupPointOfInterestController extends Controller
                 $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$base64String));
                 $imageName =  Str::random(6).time() . '.jpg';
                 $imageFile = Image::make($image)->fit(1920, 768)->stream();
-                Storage::disk('spaces')->put('dook/images/poi/'.$imageName, $imageFile, 'public');
+                gcs_put('dook/images/poi/'.$imageName, $imageFile, 'image/jpeg');
                 // $relPath = 'dook/images/poi/';
                 //     if (!file_exists(public_path($relPath))) {
                 //         mkdir(public_path($relPath), 777, true);

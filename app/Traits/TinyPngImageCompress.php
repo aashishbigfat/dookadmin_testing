@@ -14,61 +14,10 @@ trait TinyPngImageCompress {
      * @param null $dateField
      * @return Carbon
      */
-    public function compressToS3($image,$foldername, $filename)
-    {
-        $relPath = 'images/uploads/tiny/';
-            if (!file_exists(public_path($relPath))) {
-                mkdir(public_path($relPath), 777, true);
-            }
-            Image::make($image)->save( public_path($relPath . $filename ) );
-            $filepath = public_path($relPath . $filename );
-        try {
-            \Tinify\setKey("tJ62FVVM14GGLVGsDZkcs6wNXLTxlhy4"); 
-            $source = \Tinify\fromFile($filepath);
-            $source->toFile($filepath);
-            $filePathN= url('images/uploads/tiny/'. $filename );
-            $img = file_get_contents('https://adm.dookinternational.com/images/uploads/tiny/'.$filename);
-            $base64String = base64_encode($img);
-            $images = base64_decode($base64String);
-            //dd($images);
-            Storage::disk('spaces')->put($foldername.'/'.$filename, $images, 'public');
-            // $source->store(array(
-            //     "service" => "s3",
-            //     "aws_access_key_id" => env('TINIFY_AWS_ACCESS_KEY_ID'),
-            //     "aws_secret_access_key" => env('TINIFY_AWS_SECRET_ACCESS_KEY'),
-            //     "region" => "us-west-2",
-            //     "headers" => array("Cache-Control" => "max-age=31536000, public"),
-            //     "path" => 's3-pullit-bucket/'.$foldername.'/'.$filename
-            // ));
-            //$image_paths = public_path('images/uploads/tiny/'.$filename);
-            if(file_exists($filepath))
-            {
-                unlink($filepath);
-            }  
-        } catch(\Tinify\AccountException $e) {
-               $this->directImageSaveInS3($image,$foldername, $filename);
-                //return redirect('images/create1')->with('error', $e->getMessage());
-            } catch(\Tinify\ClientException $e) {
-                $this->directImageSaveInS3($image,$foldername, $filename);
-                //return redirect('images/create')->with('error', $e->getMessage());
-            } catch(\Tinify\ServerException $e) {
-                $this->directImageSaveInS3($image,$foldername, $filename);
-                //return redirect('images/create')->with('error', $e->getMessage());
-            } catch(\Tinify\ConnectionException $e) {
-                $this->directImageSaveInS3($image,$foldername, $filename);
-                //return redirect('images/create')->with('error', $e->getMessage());
-            } catch(Exception $e) {
-                $this->directImageSaveInS3($image,$foldername, $filename);
-                //return redirect('images/create')->with('error', $e->getMessage());
-            }
-    }
-
-
-    function directImageSaveInS3($image,$foldername, $filename){
-        //$imageFile = Image::make($image)->stream();
-        //$imageFile = $imageFile->__toString();
-        Storage::disk('spaces')->putFileAs($foldername, $image, $filename, 'public');
-    }
+    // compressToS3() and directImageSaveInS3() lived here. Both wrote to
+    // Storage::disk('spaces') - DigitalOcean Spaces, now retired - and neither
+    // was called from anywhere: compressToS3() had no callers, and
+    // directImageSaveInS3() was only reached from its catch blocks.
 
     public function compressToLocal($image,$foldername, $filename)
     {

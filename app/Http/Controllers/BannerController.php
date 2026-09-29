@@ -75,7 +75,7 @@ class BannerController extends Controller
              $ext = 'webp';
             $convertImage = Image::make($image)->encode($ext, 60);
             $fileName = uniqid().'.'.$ext;
-            Storage::disk('s3')->put('com/banner/'.$fileName, $convertImage);
+            gcs_put('com/banner/'.$fileName, $convertImage, 'image/webp');
             $banners->image = $fileName;
         }
         $banners->save();
@@ -140,7 +140,7 @@ class BannerController extends Controller
              $ext = 'webp';
             $convertImage = Image::make($image)->encode($ext, 60);
             $fileName = uniqid().'.'.$ext;
-            Storage::disk('s3')->put('com/banner/'.$fileName, $convertImage);
+            gcs_put('com/banner/'.$fileName, $convertImage, 'image/webp');
             $banners->image = $fileName;
         }
         $banners->save();

@@ -53,7 +53,7 @@ class ItineraryPdfController extends Controller
             //$filename = $name.'.'.$extension;
             $filenames = explode('.pdf',$name);
             $filename = $filenames[0].'-'.Str::random(3).'.'.$extension;
-            $storagePath = Storage::disk('s3')->put('cloud_departure/itinerary/pdf/'.$filename, file_get_contents($pdf_files), 'public');
+            $storagePath = gcs_put('cloud_departure/itinerary/pdf/'.$filename, file_get_contents($pdf_files), 'application/pdf');
 
             //$filenamess = explode('.pdf',$filenames);
             //$filename = $filenamess[0].'-'.time().'.'.$extension;
@@ -91,7 +91,7 @@ class ItineraryPdfController extends Controller
             //$filename = $name.'.'.$extension;
             $filenames = explode('.pdf',$name);
             $filename = $filenames[0].'-'.Str::random(3).'.'.$extension;
-            $storagePath = Storage::disk('s3')->put('cloud_departure/itinerary/pdf/'.$filename, file_get_contents($pdf_files), 'public');
+            $storagePath = gcs_put('cloud_departure/itinerary/pdf/'.$filename, file_get_contents($pdf_files), 'application/pdf');
 
             //$filenamess = explode('.pdf',$filenames);
             //$filename = $filenamess[0].'-'.time().'.'.$extension;

@@ -7,6 +7,47 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
 
+if (!function_exists('gcs_put')) {
+    /**
+     * Write an object to the application's own Cloud Storage bucket.
+     *
+     * Replaces the Storage::disk('s3') and Storage::disk('spaces') calls that
+     * used to live in the upload controllers. AWS and DigitalOcean are both
+     * retired; those disks wrote to accounts that no longer serve anything.
+     *
+     * Credentials come from Application Default Credentials - on the VM that is
+     * the attached service account, so no key file is involved. The object path
+     * is left exactly as the callers had it, so whatever reads these images
+     * keeps working; only the bucket behind them changed.
+     *
+     * @param  string $path      object name, e.g. "com/banner/abc.webp"
+     * @param  mixed  $contents  string, stream, or anything Cloud Storage accepts
+     * @return bool              true on success; failures are logged, not thrown,
+     *                           matching the previous disk()->put() behaviour
+     */
+    function gcs_put($path, $contents, $contentType = null)
+    {
+        try {
+            $storage = new StorageClient(array_filter([
+                'projectId' => config('images.project_id') ?: env('GOOGLE_CLOUD_PROJECT_ID'),
+            ]));
+
+            $options = ['name' => ltrim((string) $path, '/')];
+            if ($contentType) {
+                $options['metadata'] = ['contentType' => $contentType];
+            }
+
+            $storage->bucket(config('images.bucket'))->upload($contents, $options);
+
+            return true;
+        } catch (\Throwable $e) {
+            \Log::error('gcs_put failed for ' . $path . ': ' . $e->getMessage());
+
+            return false;
+        }
+    }
+}
+
 if (!function_exists('img_base')) {
     /**
      * Base URL for a module's image folder, with no trailing slash.
