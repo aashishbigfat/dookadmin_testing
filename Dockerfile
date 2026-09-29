@@ -82,6 +82,9 @@ FROM php:8.2-fpm-bookworm AS runtime
 # gd: intervention/image has no published config/image.php, so it uses the GD
 #     driver, and dompdf needs it to embed raster images in PDFs.
 # exif: intervention reads photo orientation from it.
+# mysqli: the signature sub-app under public/signature/ uses the mysqli_*
+#     procedural API, not PDO. Without it every page there dies with "Call to
+#     undefined function mysqli_connect()".
 # dom, mbstring, iconv, fileinfo and libxml - required by dompdf and friends -
 # are already compiled into the base image.
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -91,7 +94,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && curl -sSLf -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
     && chmod +x /usr/local/bin/install-php-extensions \
-    && install-php-extensions gd exif pdo_mysql opcache \
+    && install-php-extensions gd exif pdo_mysql mysqli opcache \
     && rm -rf /var/lib/apt/lists/* /tmp/pear
 
 WORKDIR /var/www/html
