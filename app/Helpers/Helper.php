@@ -28,8 +28,15 @@ if (!function_exists('gcs_put')) {
     function gcs_put($path, $contents, $contentType = null)
     {
         try {
+            // keyFilePath when the entrypoint has materialised one from
+            // GOOGLE_CLOUD_KEY_JSON_BASE64, otherwise Application Default
+            // Credentials. A key is needed on the VM because its instance
+            // service account carries the devstorage.read_only scope, which
+            // caps writes no matter what IAM says - and widening that scope
+            // means stopping the VM, which also stops dookwebsite and dookblog.
             $storage = new StorageClient(array_filter([
-                'projectId' => config('images.project_id') ?: env('GOOGLE_CLOUD_PROJECT_ID'),
+                'projectId'   => config('images.project_id') ?: env('GOOGLE_CLOUD_PROJECT_ID'),
+                'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE') ?: null,
             ]));
 
             $options = ['name' => ltrim((string) $path, '/')];
