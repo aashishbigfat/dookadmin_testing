@@ -208,7 +208,7 @@
     <div class="Daywisebottomrightbg Daywisebottomrightbg_a">
         @if($pdf_itineraries->status == 0)
         <div>
-            <img src="https://adm.dookinternational.com/promotions/{{$pdf_itineraries->itinerary_image}}" style="width:100%;height:auto;object-fit:cover;">
+            <img src="{{ img_url('promotions', $pdf_itineraries->itinerary_image) }}" style="width:100%;height:auto;object-fit:cover;">
         </div>
         @else
         <div>

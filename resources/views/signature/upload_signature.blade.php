@@ -8,7 +8,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <div class="buttonInline">
-            <a href="https://adm.dookinternational.com/signature/" target="_blank">
+            <a href="{{ url('/signature/') }}" target="_blank">
                 <span class="btn btn-success">Generate Signature<sup style="color:#ffeb00"></sup></span>
             </a>
         </div>

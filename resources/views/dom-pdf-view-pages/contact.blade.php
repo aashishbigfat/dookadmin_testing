@@ -8,7 +8,7 @@
                         <td>
                             @if($contact_data->manager_name != '' || $contact_data->manager_phone != '' || $contact_data->manager_email != '')
                             <div>
-                                <img src="https://adm.dookinternational.com/media/itinerary/guide.png" style="width:40px;margin-right:10px;">
+                                <img src="{{ asset('media/itinerary/guide.png') }}" style="width:40px;margin-right:10px;">
                             </div>
                             @endif
                         </td>
