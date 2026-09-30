@@ -102,9 +102,9 @@ class ActivityExpriencesController extends Controller
         $total_activities = DB::table('activities')->get();
         $total = count($total_activities);
         $status = ($status == null)?'no':$status;
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/activities/";
+        //$urlS3 = img_base('activities').'/';
         // $urlS3 = url('/dook/images/activities/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/activities/';
+        $urlS3 = img_base('activities').'/';
         if($request->ajax()){
             return view('activityExperience.activity_data',compact('activities','urlS3','keywords','status'));
         }
@@ -243,9 +243,9 @@ class ActivityExpriencesController extends Controller
         $total_experiences = DB::table('experiences')->get();
         $total = count($total_experiences);
         $status = ($status == null)?'no':$status;
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/experience/";
+        //$urlS3 = img_base('experience').'/';
         // $urlS3 = url('/dook/images/experience/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/experience/';
+        $urlS3 = img_base('experience').'/';
         if($request->ajax()){
             return view('activityExperience.experience_data',compact('experiences','urlS3','keywords','status'));
         }
@@ -276,9 +276,9 @@ class ActivityExpriencesController extends Controller
                     ->select('id','activity_name')
                     ->where('status', 1)
                     ->get();  
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/experience/";
+        //$urlS3 = img_base('experience').'/';
         // $urlS3 = url('/dook/images/experience/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/experience/';
+        $urlS3 = img_base('experience').'/';
         return view('activityExperience.experience_edit',compact('experiences','urlS3','activities','expActivities'));
     }
 

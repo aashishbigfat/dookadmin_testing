@@ -14,8 +14,8 @@
                   @foreach($activities as $key => $activity)
                     <tr>
                       <td>{{ ($activities->currentpage()-1) * $activities->perpage() + $key + 1 }}</td>
-                      <td style="width: 6%"><img style="width: 100%" src="{{generateSignedUrl('activities/'.$activity->image)}}"></td>
-                      <td style="width: 8%"><img style="width: 100%" src="{{generateSignedUrl('activities/'.$activity->banner_image)}}"></td>
+                      <td style="width: 6%"><img style="width: 100%" src="{{img_url('activities', $activity->image)}}"></td>
+                      <td style="width: 8%"><img style="width: 100%" src="{{img_url('activities', $activity->banner_image)}}"></td>
                       <td>{{$activity->activity_name}}</td>
                       <td>{{$activity->slug_url}}</td>
                       <td>
@@ -40,8 +40,8 @@
                            data-metakey="{{ $activity->meta_keywords }}"
                            data-metadescription="{{ $activity->meta_description }}"
                            data-slug="{{ $activity->slug_url }}"
-                           data-image="{{ generateSignedUrl('activities/' . $activity->image) }}"
-                           data-banner="{{ generateSignedUrl('activities/' . $activity->banner_image) }}"
+                           data-image="{{ img_url('activities', $activity->image) }}"
+                           data-banner="{{ img_url('activities', $activity->banner_image) }}"
                            title="Edit Activities"
                            style="cursor: pointer;">
                            <i class="fa fa-edit"></i>

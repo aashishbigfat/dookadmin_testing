@@ -56,9 +56,9 @@ class CountryController extends Controller
             $countries = Country::paginate(25);                
         }
     	$countryCount = Country::get();
-        //$s3url= "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/country/";
+        //$s3url= img_base('country').'/';
         // $s3url = url('/dook/images/country/').'/';
-        $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/country/';
+        $s3url = img_base('country').'/';
     	$total = count($countryCount);
         $status = ($status == null)?'no':$status;
     	if($request->ajax()){
@@ -104,9 +104,9 @@ class CountryController extends Controller
                         ->distinct()
                         ->select('departure_id')
                         ->get();
-        //$s3url = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/country/";
+        //$s3url = img_base('country').'/';
         // $s3url = url('/dook/images/country/').'/';
-         $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/country/';
+         $s3url = img_base('country').'/';
         return view('country.edit',compact('countries','s3url','major_destinations','selected_destination','departures','departure_bygs'));
     }
 

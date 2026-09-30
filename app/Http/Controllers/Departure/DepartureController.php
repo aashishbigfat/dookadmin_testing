@@ -55,10 +55,10 @@ class DepartureController extends Controller
     // Land Departure start
     public function packagesIndex(Request $request)
     {
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
+        //$urlS3 = img_base('package').'/';
         // $urlS3 = url('/dook/images/package/').'/';
 
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/package/';
+        $urlS3 = img_base('package').'/';
         //$aa = url('/dook/images/package/ico-cab.png');
         //dd($aa);
         $keywords = $request->keyword;
@@ -967,10 +967,10 @@ class DepartureController extends Controller
     }
     public function packagesEdit(Request $request, $id)
     {
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
+        //$urlS3 = img_base('package').'/';
         // $urlS3 = url('/dook/images/package').'/';
-        // $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/package/';
-        $urlS3 = generateSignedUrl('package/');
+        // $urlS3 = img_base('package').'/';
+        $urlS3 = img_base('package').'/';
         $route_ids = $request->route('id');
         $route_id = (int)$route_ids;
         $departures  = Departure::where('id', $id)->first();

@@ -53,7 +53,7 @@ class FixedDepartureController extends Controller
 {
     public function departureIndex(Request $request)
     {
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
+        //$urlS3 = img_base('package').'/';
         $urlS3 = img_base('package').'/';
         $keywords = $request->keyword;
         $status = $request->status;
@@ -233,7 +233,7 @@ class FixedDepartureController extends Controller
 
     public function departureEdit(Request $request, $id)
     {
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/package/";
+        //$urlS3 = img_base('package').'/';
         $urlS3 = img_base('package').'/';
         $route_ids = $request->route('id'); 
         $route_id = (int)$route_ids;

@@ -14,7 +14,7 @@
           @foreach( $pages as $key => $page )
             <tr>
               <td>{{$loop->index +1}}</td>
-              <td style="width: 6%"><img style="width: 100%" src="{{generateSignedUrl('landing/'.$page->banner_image)}}"></td>
+              <td style="width: 6%"><img style="width: 100%" src="{{img_url('landing', $page->banner_image)}}"></td>
               <td>{{$page->page_name}}</td>
               <td>{{$page->title}}</td>
               <td>{{$page->sub_title}}</td>

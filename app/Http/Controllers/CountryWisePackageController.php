@@ -27,7 +27,7 @@ class CountryWisePackageController extends Controller
     public function index()
     {
         $packages = CountryWisePackage::all();
-        $s3url = generateSignedUrl('com/');
+        $s3url = img_base('countrypackage').'/';
         return view('country_wise_packages.index', compact('packages','s3url'));
     }
 

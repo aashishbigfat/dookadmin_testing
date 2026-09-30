@@ -17,7 +17,7 @@
           <tr>
             <td>{{ ($top_destination_exp->currentpage()-1) * $top_destination_exp->perpage() + $key + 1 }}</td>
             <td>{{$topDest->grid_number}}</td>
-            <td style="width: 5%"><img style="width: 100%" src="{{generateSignedUrl('destinations/'.$topDest->image)}}"></td>
+            <td style="width: 5%"><img style="width: 100%" src="{{img_url('destinations', $topDest->image)}}"></td>
             <td>{{$topDest->dest_name}}</td>
             <td>
               <?php 

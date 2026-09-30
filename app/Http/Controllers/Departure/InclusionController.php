@@ -39,7 +39,7 @@ class InclusionController extends Controller
             $arr[] = $value;
         }
         $inclusionedits = $arr;
-          $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/inclusion/';
+          $s3url = img_base('inclusions').'/';
 
         if(count($inclusione) > 0){
             return view('packages.inclusion_edit',compact('inclusionedits','inclusione','inclusion_icon','s3url'));

@@ -24,7 +24,7 @@ class AboutController extends Controller
     public function index(Request $request)
     {
         // $urlS3 = url('/dook/images/about').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/about/';
+        $urlS3 = img_base('about').'/';
     	$about = About::latest()->first();
     	return view('about_us.index',compact('about','urlS3'));
     }

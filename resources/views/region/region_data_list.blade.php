@@ -17,7 +17,7 @@
           <tr>
             <td>{{ $loop->index +1}}</td>
             <td>{{ $topRegion->grid_number}}</td>
-            <td><img  style="width: 100%;" src="{{generateSignedUrl('region/'.$topRegion->image)}}"></td>
+            <td><img  style="width: 100%;" src="{{img_url('region', $topRegion->image)}}"></td>
             <td>{{$topRegion->region_name}}</td>
             <td>{{$topRegion->label_name}}</td>
             <td>{{$topRegion->slug_url}}</td>

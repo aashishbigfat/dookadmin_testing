@@ -98,7 +98,7 @@ class GroupPointOfInterestController extends Controller
                     $value->experiences = $exp_dest_row;
                 }
             }
-            $urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+            $urlS3 = img_base('poi').'/';
             //$urlS3 = url('/dook/images/poi').'/';
             if($request->ajax()){
                 return view('grouppackages.destination_poi_list',compact('poi_list','exp_dest','urlS3'));

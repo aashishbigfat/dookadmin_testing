@@ -199,7 +199,7 @@
                 <?php if($departures->image == null) { ?>
                   <img id="blah" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="" width="60" height="60"/>
                 <?php } else {?>
-                  <img id="blah" onclick="triggerImage()" src="{{generateSignedUrl('package/'.$departures->image)}}" class="" width="50" height="60"/>
+                  <img id="blah" onclick="triggerImage()" src="{{img_url('package', $departures->image)}}" class="" width="50" height="60"/>
                 <?php } ?>
               </div>
               <!-- Banner -->
@@ -217,7 +217,7 @@
                 <?php if($departures->image == null) { ?>
                   <img id="blahbanner" src="{{asset('images/no-image.png')}}" class="banner_images_view" width="100" height="70" onclick="triggerImageBanner()">
                 <?php } else {?>
-                  <img id="blahbanner" src="{{generateSignedUrl('package/'.$departures->banner_image)}}" class="banner_images_view" width="100" height="70" onclick="triggerImageBanner()">
+                  <img id="blahbanner" src="{{img_url('package', $departures->banner_image)}}" class="banner_images_view" width="100" height="70" onclick="triggerImageBanner()">
                 <?php } ?>
               </div>
             </div>
@@ -245,7 +245,7 @@
                 <div class="multiple-images" id="Filelist">
                   <ul class="thumb-Images" id="imgList">
                     @foreach($departureimages as $depimg)
-                      <li><div class="img-wrap"> <span title="Remove" class="close">×</span><img class="thumb" src="{{ generateSignedUrl('package/'.$depimg->image )}}" title="{{$depimg->image}}" data-id="{{ $depimg->image }}"></div><div class="FileNameCaptionStyle">{{$depimg->image}}</div></li>
+                      <li><div class="img-wrap"> <span title="Remove" class="close">×</span><img class="thumb" src="{{ img_url('package', $depimg->image)}}" title="{{$depimg->image}}" data-id="{{ $depimg->image }}"></div><div class="FileNameCaptionStyle">{{$depimg->image}}</div></li>
                     @endforeach
                   </ul>
                 </div>

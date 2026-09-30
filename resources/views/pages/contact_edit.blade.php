@@ -101,7 +101,7 @@
                 <?php if($contact->banner_image == null) { ?>
                   <img id="blah" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="120" height="80"/ onclick="triggerImage()">
                 <?php } else {?>
-                  <img id="blah" src="{{generateSignedUrl('landing/'.$contact->banner_image)}}" class="fetured_images_view" width="120" height="80"/ onclick="triggerImage()">
+                  <img id="blah" src="{{img_url('landing', $contact->banner_image)}}" class="fetured_images_view" width="120" height="80"/ onclick="triggerImage()">
                 <?php } ?>
               </div>
             </div>

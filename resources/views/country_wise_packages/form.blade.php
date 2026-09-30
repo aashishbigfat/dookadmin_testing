@@ -68,7 +68,7 @@
     <label>Featured Image (W:1024, H:768)</label>
     <input type="file" name="featured_image" class="form-control">
     @if(!empty($package->featured_image))
-        <img src="{{ generateSignedUrl($package->featured_image) }}" width="120" class="mt-2">
+        <img src="{{ img_url('countrypackage', $package->featured_image) }}" width="120" class="mt-2">
     @endif
 </div>
 </div>
@@ -78,7 +78,7 @@
         <label>Banner Image (W:1920, H:760)</label>
         <input type="file" name="banner_image" class="form-control">
         @if(!empty($package->banner_image))
-            <img src="{{generateSignedUrl($package->banner_image) }}" width="120" class="mt-2">
+            <img src="{{img_url('countrypackage', $package->banner_image) }}" width="120" class="mt-2">
         @endif
     </div>
 </div>

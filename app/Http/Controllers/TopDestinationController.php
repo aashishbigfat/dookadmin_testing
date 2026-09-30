@@ -66,9 +66,9 @@ class TopDestinationController extends Controller
         $count = 24;
         $total = count($top_destination_total);
         //dd($total);
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/destinations/";
+        //$urlS3 = img_base('destinations').'/';
         // $urlS3 = url('/dook/images/destinations/').'/';
-         $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/destinations/';
+         $urlS3 = img_base('destinations').'/';
         if($request->ajax()){
                 return view('landingdeparture.data_list',compact('top_destination_exp','urlS3'));
             }
@@ -189,9 +189,9 @@ class TopDestinationController extends Controller
     						->distinct()
             				->orderBy('experience_name','ASC')
                 			->get();
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/destinations/";
+        //$urlS3 = img_base('destinations').'/';
         // $urlS3 = url('/dook/images/destinations/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/destinations/';
+        $urlS3 = img_base('destinations').'/';
         return view('landingdeparture.edit',compact('experiences','top_destinations','urlS3'));
     }
 
@@ -321,9 +321,9 @@ class TopDestinationController extends Controller
         $count = 24;
         $total = count($top_destination_total);
         //dd($total);
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/destinations/";
+        //$urlS3 = img_base('destinations').'/';
         // $urlS3 = url('/dook/images/destinations/').'/';
-          $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/destinations/';
+          $urlS3 = img_base('destinations').'/';
         if($request->ajax()){
                 return view('landingdestination.data_list',compact('top_destination_exp','urlS3'));
             }
@@ -444,9 +444,9 @@ class TopDestinationController extends Controller
                             ->distinct()
                             ->orderBy('experience_name','ASC')
                             ->get();
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/destinations/";
+        //$urlS3 = img_base('destinations').'/';
         // $urlS3 = url('/dook/images/destinations/').'/';
-          $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/destinations/';
+          $urlS3 = img_base('destinations').'/';
         return view('landingdestination.edit',compact('experiences','top_destinations','urlS3'));
     }
 

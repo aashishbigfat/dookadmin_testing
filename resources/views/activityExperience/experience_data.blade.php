@@ -17,8 +17,8 @@
                   @foreach( $experiences as $key => $experience )
                     <tr id="{{ $experience->id }}">
                       <td>{{ ($experiences->currentpage()-1) * $experiences->perpage() + $key + 1 }}</td>
-                      <td style="width: 6%"><img style="width: 35%" src="{{generateSignedUrl('experience/'.$experience->image)}}"></td>
-                      <td style="width: 8%"><img style="width: 33%" src="{{generateSignedUrl('experience/'.$experience->banner_image)}}"></td>
+                      <td style="width: 6%"><img style="width: 35%" src="{{img_url('experience', $experience->image)}}"></td>
+                      <td style="width: 8%"><img style="width: 33%" src="{{img_url('experience', $experience->banner_image)}}"></td>
                       <td>{{$experience->experience_name}}</td>
                       <td>{{$experience->slug_url}}</td>
                       <td>{{$experience->sorting}}</td>

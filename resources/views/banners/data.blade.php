@@ -14,7 +14,7 @@
                   @foreach( $banners as $key => $banner )
                     <tr>
                       <td>{{($banners->currentpage()-1) * $banners->perpage() + $key + 1}}</td>
-                      <td style="width: 6%"><img style="width: 100%" src="{{generateSignedUrl('banner/'.$banner->image)}}"></td>
+                      <td style="width: 6%"><img style="width: 100%" src="{{img_url('banner', $banner->image)}}"></td>
                       <td>{{$banner->title}}</td>
                       <td>{{$banner->slug_url}}</td>
                       <td>{{$banner->days}}</td>
@@ -29,7 +29,7 @@
                            data-whereshow="{{ $banner->where_to_show }}" 
                            data-slug="{{ $banner->slug_url }}" 
                            data-description="{{ $banner->description }}" 
-                           data-image="{{ generateSignedUrl('banner/'.$banner->image) }}" 
+                           data-image="{{ img_url('banner', $banner->image) }}" 
                            title="Edit Banner" 
                            style="cursor: pointer;">
                            <i class="fa fa-edit" style="color: #9a191e"></i> 

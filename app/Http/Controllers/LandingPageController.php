@@ -22,11 +22,11 @@ class LandingPageController extends Controller
 
     function landingPages(Request $request){
         
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/landing/";
+        //$urlS3 = img_base('landing').'/';
 
         $pages = LandingDeparturePage::get();
         // $urlS3 = url('/dook/images/landing/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/landing/';
+        $urlS3 = img_base('landing').'/';
         $total = count($pages);
         return view('pages.page_index', compact('pages','urlS3','total')); 
     }
@@ -95,7 +95,7 @@ class LandingPageController extends Controller
 
     function landingPagesEdit(Request $request, $id){
         $page = LandingDeparturePage::where('id', $id)->first();
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/landing/';
+        $urlS3 = img_base('landing').'/';
         // $urlS3 = url('/dook/images/landing/').'/';
         return view('pages.page_edit', compact('page','urlS3'));
          
@@ -162,7 +162,7 @@ class LandingPageController extends Controller
     function lanndingContactIndex(Request $request)
     {
         // $urlS3 = url('/dook/images/landing/').'/';
-          $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/landing/';
+          $urlS3 = img_base('landing').'/';
         $contact = Contact::first();
         $address = ContactAddress::get();
         if($contact){

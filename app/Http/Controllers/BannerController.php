@@ -23,9 +23,9 @@ class BannerController extends Controller
         $banners = Banner::paginate();
         $banner = Banner::select('id')->get();
         $total = count($banner);
-        //$s3url= "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/banner/";
+        //$s3url= img_base('banner').'/';
         // $s3url = url('/dook/images/banner/').'/';
-         $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/banner/';
+         $s3url = img_base('banner').'/';
 
         if($request->ajax()){
                 return view('banners.data',compact('banners','s3url'));

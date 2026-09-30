@@ -82,6 +82,10 @@ return [
         'banner'       => 'editorial/banner',
         'about'        => 'editorial/about',
         'promotions'   => 'editorial/promotion',
+        // CountryWisePackageController stored these loose directly under
+        // com/ in the old bucket, with no module folder of their own.
+        'countrypackage' => 'catalog/country-package',
+
         'mailer'       => 'editorial/mailer',
     ],
 

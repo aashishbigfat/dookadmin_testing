@@ -99,7 +99,7 @@
                 <h3>Image Size <span id="imgSize" style="color: #d71921">
                   <?php
                     if($top_destinations->image || $top_destinations->image !=''){
-                      $val = generateSignedUrl('destinations/'.$top_destinations->image);
+                      $val = img_url('destinations', $top_destinations->image);
                       list($width, $height) = getimagesize($val);
                       echo "(W:". $width .", H:".$height .")";
                     }
@@ -122,10 +122,10 @@
                 <?php if($top_destinations->image == null) { ?>
                   <img id="blah" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="80" height="80"/>
                 <?php } else {?>
-                  <img id="blah" onclick="triggerImage()" src="{{generateSignedUrl('destinations/'.$top_destinations->image)}}" class="fetured_images_view" width="100" height="100"/>
+                  <img id="blah" onclick="triggerImage()" src="{{img_url('destinations', $top_destinations->image)}}" class="fetured_images_view" width="100" height="100"/>
                   <?php
                     if($top_destinations->image || $top_destinations->image !=''){
-                      $val = generateSignedUrl('destinations/'.$top_destinations->image);
+                      $val = img_url('destinations', $top_destinations->image);
                       list($width, $height) = getimagesize($val);
                       echo "<span>(W:". $width .", H:".$height .")</span>";
                     }

@@ -22,14 +22,14 @@
                       <td>{{ ($destinations->currentpage()-1) * $destinations->perpage() + $key + 1 }}</td>
                       <td>
                         @if($destination->image)
-                          <img src="{{generateSignedUrl('poi/'.$destination->image)}}" alt="" style="width: 100%;">
+                          <img src="{{img_url('poi', $destination->image)}}" alt="" style="width: 100%;">
                         @else
                           <img src="{{asset('images/no-image.png')}}" alt="" style="width: 100%;">
                         @endif
                       </td>
                       <td>
                         @if($destination->banner_image)
-                          <img src="{{generateSignedUrl('poi/'.$destination->banner_image)}}" alt="" style="width: 100%;">
+                          <img src="{{img_url('poi', $destination->banner_image)}}" alt="" style="width: 100%;">
                         @else
                           <img src="{{asset('images/no-image-banner.jpg')}}" alt="" style="width: 100%;">
                         @endif
@@ -112,7 +112,7 @@
                                 $signedMultiImages = [];
                                 if (!empty($destination->dest_images)) {
                                     foreach ($destination->dest_images as $img) {
-                                        $signedMultiImages[] = generateSignedUrl('poi/' . $img);
+                                        $signedMultiImages[] = img_url('poi', $img);
                                     }
                                 }
                             @endphp
@@ -122,7 +122,7 @@
                                 data-id="{{ $destination->id }}" 
                                 data-name="{{ $destination->dest_name }}" 
                                 data-description="{!! $destination->description !!}" 
-                                data-image="{{ generateSignedUrl('poi/' . $destination->banner_image) }}" 
+                                data-image="{{ img_url('poi', $destination->banner_image) }}" 
                                 data-country="{{ $destination->country_name }}" 
                                 data-region="{{ $destination->region }}" 
                                 data-view-multipleimg='@json($signedMultiImages)' 

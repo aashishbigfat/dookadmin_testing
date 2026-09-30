@@ -144,9 +144,9 @@ class PointOfInterestController extends Controller
                     $value->experiences = $exp_dest_row;
                 }
             }
-            //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+            //$urlS3 = img_base('poi').'/';
             // $urlS3 = url('/dook/images/poi').'/';
-            $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+            $urlS3 = img_base('poi').'/';
             if($request->ajax()){
                 return view('packages.destination_poi_list',compact('poi_list','exp_dest','urlS3'));
             }
@@ -520,9 +520,9 @@ class PointOfInterestController extends Controller
             }
             //+++++++++++++++For Edit Poi +++++++++++++++++++++++++++//
 
-            //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+            //$urlS3 = img_base('poi').'/';
             // $urlS3 = url('/dook/images/poi').'/';
-            $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+            $urlS3 = img_base('poi').'/';
             if($request->ajax()){
                 return view('packages.pointofinterest_list',compact('poi_list','urlS3'));
             }

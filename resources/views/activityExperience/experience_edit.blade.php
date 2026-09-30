@@ -123,7 +123,7 @@
                         <?php if($experiences->image == null) { ?>
                           <img id="image_show" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="" width="80" height="80"/>
                             <?php } else {?>
-                              <img id="image_show" onclick="triggerImage()" src="{{generateSignedUrl('experience/'.$experiences->image)}}" class="" width="80" height="80"/>
+                              <img id="image_show" onclick="triggerImage()" src="{{img_url('experience', $experiences->image)}}" class="" width="80" height="80"/>
                             <?php } ?>
                           </div>
                            <div class="col-md-4 col-lg-4" style="margin-top: 5px">
@@ -139,7 +139,7 @@
                       <?php if($experiences->image == null) { ?>
                         <img id="image_banner_show" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="" width="100" height="60"/>
                       <?php } else {?> 
-                        <img id="image_banner_show" onclick="triggerImageBanner()" src="{{generateSignedUrl('experience/'.$experiences->banner_image)}}" class="" width="100" height="60"/>
+                        <img id="image_banner_show" onclick="triggerImageBanner()" src="{{img_url('experience', $experiences->banner_image)}}" class="" width="100" height="60"/>
                       <?php } ?> 
                     </div>
                 </div>

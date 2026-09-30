@@ -39,9 +39,9 @@ class ExistingPoiController extends Controller
         $total_poi = CountryExistingPoi::get();
         $total = count($total_poi);
         $country = Country::select('id', 'country_name')->get();
-        //$s3url= "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+        //$s3url= img_base('poi').'/';
         // $s3url = url('/dook/images/poi/').'/';
-        $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+        $s3url = img_base('poi').'/';
         if($request->ajax()){
             return view('existingpoi.data',compact('pois','s3url'));
         }

@@ -83,7 +83,7 @@
                     <?php if($countries->image_1 == null) { ?>
                       <img id="image_1_show" onclick="triggerImage1()" src="{{asset('images/no-image.png')}}" class="" width="300" height="120"/>
                     <?php } else {?>
-                      <img id="image_1_show" onclick="triggerImage1()" src="{{generateSignedUrl('country/'.$countries->image_1)}}" class="" width="300" height="180"/>
+                      <img id="image_1_show" onclick="triggerImage1()" src="{{img_url('country', $countries->image_1)}}" class="" width="300" height="180"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                     <?php if($countries->image_2 == null) { ?>
                       <img id="image_2_show" onclick="triggerImage2()" src="{{asset('images/no-image.png')}}" class="" width="300" height="180"/>
                     <?php } else {?>
-                      <img id="image_2_show" onclick="triggerImage2()" src="{{generateSignedUrl('country/'.$countries->image_2)}}" class="" width="300" height="180"/>
+                      <img id="image_2_show" onclick="triggerImage2()" src="{{img_url('country', $countries->image_2)}}" class="" width="300" height="180"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                     <?php if($countries->image_3 == null) { ?>
                       <img id="image_3_show" onclick="triggerImage3()" src="{{asset('images/no-image.png')}}" class="" width="300" height="180"/>
                     <?php } else {?>
-                      <img id="image_3_show" onclick="triggerImage3()" src="{{generateSignedUrl('country/'.$countries->image_3)}}" class="" width="300" height="180"/>
+                      <img id="image_3_show" onclick="triggerImage3()" src="{{img_url('country', $countries->image_3)}}" class="" width="300" height="180"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -145,7 +145,7 @@
                     <?php if($countries->image == null) { ?>
                       <img id="image_show" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="" width="80" height="60"/>
                     <?php } else {?>
-                      <img id="image_show" onclick="triggerImage()" src="{{generateSignedUrl('country/'.$countries->image)}}" class="" width="80" height="60"/>
+                      <img id="image_show" onclick="triggerImage()" src="{{img_url('country', $countries->image)}}" class="" width="80" height="60"/>
                     <?php } ?>
                   </div>
           
@@ -162,7 +162,7 @@
                     <?php if($countries->banner_image == null) { ?>
                       <img id="image_banner_show" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_show" onclick="triggerImageBanner()" src="{{generateSignedUrl('country/'.$countries->banner_image)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_show" onclick="triggerImageBanner()" src="{{img_url('country', $countries->banner_image)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                    <div class="col-md-4 col-lg-4" style="margin-top: 5px">
@@ -178,7 +178,7 @@
                     <?php if($countries->mobile_banner_image == null) { ?>
                       <img id="image_banner_show" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_show" onclick="triggerImageBanner()" src="{{generateSignedUrl('country/'.$countries->mobile_banner_image)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_show" onclick="triggerImageBanner()" src="{{img_url('country', $countries->mobile_banner_image)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
          
@@ -332,7 +332,7 @@
                     <?php if($countries->banner_image_about == null) { ?>
                       <img id="image_banner_about" onclick="triggerImageBannerAbout()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_about" onclick="triggerImageBannerAbout()" src="{{generateSignedUrl('country/'.$countries->banner_image_about)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_about" onclick="triggerImageBannerAbout()" src="{{img_url('country', $countries->banner_image_about)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -430,7 +430,7 @@
                     <?php if($countries->banner_image_attraction == null) { ?>
                       <img id="image_banner_attraction" onclick="triggerImageBannerAttraction()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_attraction" onclick="triggerImageBannerAttraction()" src="{{generateSignedUrl('country/'.$countries->banner_image_attraction)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_attraction" onclick="triggerImageBannerAttraction()" src="{{img_url('country', $countries->banner_image_attraction)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -528,7 +528,7 @@
                     <?php if($countries->edit_banner_image_group == null) { ?>
                       <img id="image_banner_group" onclick="triggerImageBannerGroup()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_group" onclick="triggerImageBannerGroup()" src="{{generateSignedUrl('country/'.$countries->edit_banner_image_group)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_group" onclick="triggerImageBannerGroup()" src="{{img_url('country', $countries->edit_banner_image_group)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -627,7 +627,7 @@
                     <?php if($countries->edit_banner_image_visa == null) { ?>
                       <img id="image_banner_visa" onclick="triggerImageBannerVisa()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_visa" onclick="triggerImageBannerVisa()" src="{{generateSignedUrl('country/'.$countries->edit_banner_image_visa)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_visa" onclick="triggerImageBannerVisa()" src="{{img_url('country', $countries->edit_banner_image_visa)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -726,7 +726,7 @@
                     <?php if($countries->edit_banner_image_experience == null) { ?>
                       <img id="image_banner_experience" onclick="triggerImageBannerExperience()" src="{{asset('images/no-image.png')}}" class="" width="120" height="60"/>
                     <?php } else {?>
-                      <img id="image_banner_experience" onclick="triggerImageBannerExperience()" src="{{generateSignedUrl('country/'.$countries->edit_banner_image_experience)}}" class="" width="120" height="60"/>
+                      <img id="image_banner_experience" onclick="triggerImageBannerExperience()" src="{{img_url('country', $countries->edit_banner_image_experience)}}" class="" width="120" height="60"/>
                     <?php } ?>
                   </div>
                 </div>

@@ -120,9 +120,9 @@ class DestinationController extends Controller
         }
           //dd($destinations);
       $destinationCount = Destination::get();
-      //$s3url = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+      //$s3url = img_base('poi').'/';
       // $s3url = url('/dook/images/poi/').'/';
-         $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+         $s3url = img_base('poi').'/';
       $total = count($destinationCount);
       $status = ($status == null)?'no':$status;
       if($request->ajax()){
@@ -134,9 +134,9 @@ class DestinationController extends Controller
     public function destinationEdit(Request $request, $id)
     {
       $destination = Destination::find($id);
-      //$s3url = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/poi/";
+      //$s3url = img_base('poi').'/';
       // $s3url = url('/dook/images/poi/').'/';
-      $s3url = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+      $s3url = img_base('poi').'/';
       return view('destination.edit',compact('destination','s3url'));
     }
     public function destinationUpdate(Request $request, $id)

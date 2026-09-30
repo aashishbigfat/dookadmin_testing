@@ -44,12 +44,12 @@
                             <td>{{ $package->slug }}</td>
                             <td>
                                 @if($package->featured_image)
-                                    <img src="{{generateSignedUrl($package->featured_image)}}" width="50" height="50" style="border-radius: 100px;" />
+                                    <img src="{{img_url('countrypackage', $package->featured_image)}}" width="50" height="50" style="border-radius: 100px;" />
                                 @endif
                             </td>
                             <td>
                                 @if($package->banner_image)
-                                    <img src="{{ generateSignedUrl($package->banner_image) }}" width="50" height="50" style="border-radius: 100px;" />
+                                    <img src="{{ img_url('countrypackage', $package->banner_image) }}" width="50" height="50" style="border-radius: 100px;" />
                                 @endif
                             </td>
                             <td>

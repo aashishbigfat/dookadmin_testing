@@ -17,9 +17,9 @@
                   @foreach( $countries as $key => $country )
                     <tr>
                       <td>{{ ($countries->currentpage()-1) * $countries->perpage() + $key + 1 }}</td>
-                      <td><img src="{{generateSignedUrl('country/'.$country->image)}}" style="width: 60%;height: 30px"></td>
-                      <td><img src="{{generateSignedUrl('country/'.$country->banner_image)}}" style="width: 60%;height: 30px"></td>
-                      <td><img src="{{generateSignedUrl('country/'.$country->mobile_banner_image)}}" style="width: 60%;height: 30px"></td>
+                      <td><img src="{{img_url('country', $country->image)}}" style="width: 60%;height: 30px"></td>
+                      <td><img src="{{img_url('country', $country->banner_image)}}" style="width: 60%;height: 30px"></td>
+                      <td><img src="{{img_url('country', $country->mobile_banner_image)}}" style="width: 60%;height: 30px"></td>
                       <td>{{$country->country_name}}</td>
                       <td>{{$country->title}}</td>
                       <td>{{$country->slug_url}}</td>
@@ -69,8 +69,8 @@
                       </td>
                       <td>
                         @php
-                            $signedImage = $country->image ? generateSignedUrl('country/' . $country->image) : '';
-                            $signedBanner = $country->banner_image ? generateSignedUrl('country/' . $country->banner_image) : '';
+                            $signedImage = $country->image ? img_url('country', $country->image) : '';
+                            $signedBanner = $country->banner_image ? img_url('country', $country->banner_image) : '';
                         @endphp
 
                         <a class="dropdown-item edit countryView"  

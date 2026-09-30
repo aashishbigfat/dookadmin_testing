@@ -18,7 +18,7 @@
                   @foreach( $departures as $key => $departure )
                     <tr>
                       <td>{{ ($departures->currentpage()-1) * $departures->perpage() + $key + 1 }}</td>
-                      <td style="width: 10%"><img style="width: 30%" src="{{generateSignedUrl('package'.$departure->image)}}"> / <img style="width: 55%" src="{{$urlS3.$departure->banner_image}}"></td>
+                      <td style="width: 10%"><img style="width: 30%" src="{{img_url('package', $departure->image)}}"> / <img style="width: 55%" src="{{$urlS3.$departure->banner_image}}"></td>
                       <td><a href="https://www.dookinternational.com/{{$departure->slug_url_pre}}{{'/'}}{{$departure->slug_url}}{{'/'}}{{$departure->dep_dook_ref_id}}" title="View Departure" target="_blank">{{$departure->dep_dook_ref_id}}</a></td>
                       <td><a href="https://www.dookinternational.com/{{$departure->slug_url_pre}}{{'/'}}{{$departure->slug_url}}{{'/'}}{{$departure->dep_dook_ref_id}}" title="View Departure" target="_blank">{{$departure->title}}</a></td>
                       <td>

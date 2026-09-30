@@ -37,9 +37,9 @@ class RegionController extends Controller
         }
         
         $total = count($regions);
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/region/";
+        //$urlS3 = img_base('region').'/';
         // $urlS3 = url('/dook/images/region/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/region/';
+        $urlS3 = img_base('region').'/';
         if($request->ajax()){
                 return view('region.region_data_list',compact('regions','total','urlS3','keywords'));
             }
@@ -73,9 +73,9 @@ class RegionController extends Controller
     						->distinct()
             				->orderBy('experience_name','ASC')
                 			->get();
-        //$urlS3 = "https://dook-international.sgp1.cdn.digitaloceanspaces.com/dook/images/region/";
+        //$urlS3 = img_base('region').'/';
         // $urlS3 = url('/dook/images/region/').'/';
-        $urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/region/';
+        $urlS3 = img_base('region').'/';
         return view('region.region_edit',compact('experiences','region','urlS3','countries','region_country','region_experience'));
     }
 

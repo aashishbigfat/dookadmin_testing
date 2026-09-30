@@ -50,7 +50,7 @@
                                 // echo "Current Image W:". $width.",";
                                 // echo "H:". $height;
                             ?>
-                            <img id="banner" onclick="triggerImage()" src="{{generateSignedUrl('package/'. $banner_data->banner_image)}}" class="fetured_images_view" width="140" height="80"/>
+                            <img id="banner" onclick="triggerImage()" src="{{img_url('package', $banner_data->banner_image)}}" class="fetured_images_view" width="140" height="80"/>
                         </div>
                         <div class="col-md-12 text-left">
                             <button type="submit" class="btn btn-info m-t-20" type="button"><i class="fas fa-save"></i>Update</button>

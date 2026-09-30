@@ -1,5 +1,5 @@
 <div class="design_1 fix_pdf_container banner_detail">
-    <div class="img banner_img" style="background-image: url('{{generateSignedUrl('package/'.$banner_data->banner_image)}}');"></div>
+    <div class="img banner_img" style="background-image: url('{{img_url('package', $banner_data->banner_image)}}');"></div>
     <img src="{{asset('media/itinerary/cover_graphic.png')}}" alt="banner background" class="banner_bg">
     <div class="btm_strip"></div>
     <div class="company_name">

@@ -1301,8 +1301,8 @@ class PdfController extends Controller
 	//latest pdf page raj
     public function domPdfPages(Request $request, $id)
     {
-    	$urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/package/';
-    	$urlS2 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+    	$urlS3 = img_base('package').'/';
+    	$urlS2 = img_base('poi').'/';
     	$route_ids = $request->route('id'); 
         $route_id = (int)$route_ids;
         
@@ -1463,8 +1463,8 @@ class PdfController extends Controller
     }
     public function generatePDFDom(Request $request, $id)
     {
-    	$urlS3 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/package/';
-    	$urlS2 = 'https://dooktravels.s3.ap-south-1.amazonaws.com/com/poi/';
+    	$urlS3 = img_base('package').'/';
+    	$urlS2 = img_base('poi').'/';
     	$route_ids = $request->route('id'); 
         $route_id = (int)$route_ids;
         $current_date = date('Y-m-d');

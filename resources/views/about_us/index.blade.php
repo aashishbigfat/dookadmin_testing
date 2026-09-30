@@ -60,7 +60,7 @@
                     <?php if($about->image == null) { ?>
                       <img id="image_show" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="" width="300" height="120"/>
                     <?php } else {?>
-                      <img id="image_show" onclick="triggerImage()" src="{{generateSignedUrl('about/'.$about->image)}}" class="" width="300" height="180"/>
+                      <img id="image_show" onclick="triggerImage()" src="{{img_url('about', $about->image)}}" class="" width="300" height="180"/>
                     <?php } ?>
                   </div>
                 </div>
@@ -131,7 +131,7 @@
                 <?php if($about->banner_image == null) { ?>
                   <img id="image_banner_show" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="" width="100" height="60"/>
                 <?php } else {?>
-                  <img id="image_banner_show" onclick="triggerImageBanner()" src="{{generateSignedUrl('about/'.$about->banner_image)}}" class="" width="100" height="60"/>
+                  <img id="image_banner_show" onclick="triggerImageBanner()" src="{{img_url('about', $about->banner_image)}}" class="" width="100" height="60"/>
                 <?php } ?>
               </div>
             </div>

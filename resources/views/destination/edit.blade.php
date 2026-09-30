@@ -125,7 +125,7 @@
                   <?php if($destination->image == null) { ?>
                     <img id="image_edit" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="" width="80" height="60"/>
                   <?php } else {?>
-                    <img id="image_edit" onclick="triggerImage()" src="{{generateSignedUrl('poi/'.$destination->image)}}" class="" width="80" height="60"/>
+                    <img id="image_edit" onclick="triggerImage()" src="{{img_url('poi', $destination->image)}}" class="" width="80" height="60"/>
                   <?php } ?>
                 </div>
                 <div class="col-md-4 col-lg-4" style="margin-top: 5px">
@@ -141,7 +141,7 @@
                   <?php if($destination->banner_image == null) { ?>
                     <img id="image_banner_show" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="" width="100" height="60"/>
                   <?php } else {?>
-                    <img id="image_banner_show" onclick="triggerImageBanner()" src="{{generateSignedUrl('poi/'.$destination->banner_image)}}" class="" width="100" height="60"/>
+                    <img id="image_banner_show" onclick="triggerImageBanner()" src="{{img_url('poi', $destination->banner_image)}}" class="" width="100" height="60"/>
                   <?php } ?>
                 </div>
             </div>

@@ -89,7 +89,7 @@
                 @if($settings->image == "")
                   <img id="blah" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="130" height="60"/>
                 @else
-                  <img id="blah" onclick="triggerImage()" src="{{generateSignedUrl('home/'.$settings->image)}}" class="fetured_images_view" width="130" height="60"/>
+                  <img id="blah" onclick="triggerImage()" src="{{img_url('home', $settings->image)}}" class="fetured_images_view" width="130" height="60"/>
                 @endif
               </div>
               <div class="col-md-3">
@@ -105,7 +105,7 @@
                 @if($settings->mobile_image == "")
                   <img id="blahM" onclick="triggerImageM()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="40" height="80"/>
                 @else
-                  <img id="blahM" onclick="triggerImageM()" src="{{generateSignedUrl('home/'.$settings->mobile_image)}}" class="fetured_images_view" width="40" height="80"/>
+                  <img id="blahM" onclick="triggerImageM()" src="{{img_url('home', $settings->mobile_image)}}" class="fetured_images_view" width="40" height="80"/>
                 @endif
               </div>
             </div>
@@ -163,7 +163,7 @@
                     @if($settings->exp_image1 == "")
                      <img id="blahE1" onclick="triggerImageE1()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                       @else
-                    <img id="blahE1" onclick="triggerImageE1()" src="{{generateSignedUrl('home/'.$settings->exp_image1)}}" class="fetured_images_view" width="60" height="60"/>
+                    <img id="blahE1" onclick="triggerImageE1()" src="{{img_url('home', $settings->exp_image1)}}" class="fetured_images_view" width="60" height="60"/>
                    @endif
                   </div>
                 </div>
@@ -193,7 +193,7 @@
                    @if($settings->exp_image2 == "")
                      <img id="blahE2" onclick="triggerImageE2()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                      @else
-                     <img id="blahE2" onclick="triggerImageE2()" src="{{generateSignedUrl('home/'.$settings->exp_image2)}}" class="fetured_images_view" width="60" height="60"/>
+                     <img id="blahE2" onclick="triggerImageE2()" src="{{img_url('home', $settings->exp_image2)}}" class="fetured_images_view" width="60" height="60"/>
                    @endif
                   </div>
                 </div>
@@ -222,7 +222,7 @@
                   @if($settings->exp_image3 == "")
                      <img id="blahE3" onclick="triggerImageE3()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                    @else
-                    <img id="blahE3" onclick="triggerImageE3()" src="{{generateSignedUrl('home/'.$settings->exp_image3)}}" class="fetured_images_view" width="60" height="60"/>
+                    <img id="blahE3" onclick="triggerImageE3()" src="{{img_url('home', $settings->exp_image3)}}" class="fetured_images_view" width="60" height="60"/>
                    @endif
                   </div>
                 </div>
@@ -251,7 +251,7 @@
                   @if($settings->exp_image4 == "")
                      <img id="blahE4" onclick="triggerImageE4()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                    @else
-                    <img id="blahE4" onclick="triggerImageE4()" src="{{generateSignedUrl('home/'.$settings->exp_image4)}}" class="fetured_images_view" width="60" height="60"/>
+                    <img id="blahE4" onclick="triggerImageE4()" src="{{img_url('home', $settings->exp_image4)}}" class="fetured_images_view" width="60" height="60"/>
                    @endif
                   </div>
                 </div>
@@ -280,7 +280,7 @@
                   @if($settings->exp_image5 == "")
                      <img id="blahE4" onclick="triggerImageE4()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                    @else
-                    <img id="blahE4" onclick="triggerImageE4()" src="{{generateSignedUrl('home/'.$settings->exp_image5)}}" class="fetured_images_view" width="60" height="60"/>
+                    <img id="blahE4" onclick="triggerImageE4()" src="{{img_url('home', $settings->exp_image5)}}" class="fetured_images_view" width="60" height="60"/>
                    @endif
                   </div>
                 </div>
@@ -324,7 +324,7 @@
                   @if($value->package_image == "")
                     <img id="blahP{{$value->id}}" onclick="triggerImageP{{$value->id}}()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
                   @else
-                    <img id="blahP{{$value->id}}" onclick="triggerImageP{{$value->id}}()" src="{{generateSignedUrl('home/'.$value->package_image)}}" class="fetured_images_view" width="60" height="60"/>
+                    <img id="blahP{{$value->id}}" onclick="triggerImageP{{$value->id}}()" src="{{img_url('home', $value->package_image)}}" class="fetured_images_view" width="60" height="60"/>
                   @endif
                 </div>
                 @endforeach
@@ -376,7 +376,7 @@
                  <img id="blah1" onclick="triggerImage1()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
               
                  @else
-                  <img id="blah1" onclick="triggerImage1()" src="{{generateSignedUrl('home/'.$settings->country_image1)}}" class="fetured_images_view" width="60" height="60"/>
+                  <img id="blah1" onclick="triggerImage1()" src="{{img_url('home', $settings->country_image1)}}" class="fetured_images_view" width="60" height="60"/>
                  @endif
               </div>
               
@@ -413,7 +413,7 @@
                  <img id="blah2" onclick="triggerImage2()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
               
                  @else
-                  <img id="blah2" onclick="triggerImage2()" src="{{generateSignedUrl('home/'.$settings->country_image2)}}" class="fetured_images_view" width="60" height="60"/>
+                  <img id="blah2" onclick="triggerImage2()" src="{{img_url('home', $settings->country_image2)}}" class="fetured_images_view" width="60" height="60"/>
                  @endif
               </div>
               
@@ -450,7 +450,7 @@
                  <img id="blah3" onclick="triggerImage3()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
               
                  @else
-                  <img id="blah3" onclick="triggerImage3()" src="{{generateSignedUrl('home/'.$settings->country_image3)}}" class="fetured_images_view" width="60" height="60"/>
+                  <img id="blah3" onclick="triggerImage3()" src="{{img_url('home', $settings->country_image3)}}" class="fetured_images_view" width="60" height="60"/>
                  @endif
               </div>
               
@@ -487,7 +487,7 @@
                  <img id="blah4" onclick="triggerImage4()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
               
                  @else
-                  <img id="blah4" onclick="triggerImage4()" src="{{generateSignedUrl('home/'.$settings->country_image4)}}" class="fetured_images_view" width="60" height="60"/>
+                  <img id="blah4" onclick="triggerImage4()" src="{{img_url('home', $settings->country_image4)}}" class="fetured_images_view" width="60" height="60"/>
                  @endif
               </div>
               
@@ -524,7 +524,7 @@
                  <img id="blah5" onclick="triggerImage5()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="60"/>
               
                  @else
-                  <img id="blah5" onclick="triggerImage5()" src="{{generateSignedUrl('home/'.$settings->country_image5)}}" class="fetured_images_view" width="60" height="60"/>
+                  <img id="blah5" onclick="triggerImage5()" src="{{img_url('home', $settings->country_image5)}}" class="fetured_images_view" width="60" height="60"/>
                  @endif
               </div>
               
@@ -566,7 +566,7 @@
                 @if($settings->activity_banner == "")
                 <img id="blahActB" onclick="triggerImageAB()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="100" height="70"/>
                 @else
-                  <img id="blahActB" onclick="triggerImageAB()" src="{{generateSignedUrl('home/'.$settings->activity_banner)}}" class="fetured_images_view" width="130" height="60"/>
+                  <img id="blahActB" onclick="triggerImageAB()" src="{{img_url('home', $settings->activity_banner)}}" class="fetured_images_view" width="130" height="60"/>
                 @endif
                  
               </div>
@@ -619,7 +619,7 @@
                       @csrf
                       <input type="hidden" name="act_id" id="act_id{{$activity->id}}" value="{{$activity->id}}">
                       <td>{{ $loop->index +1 }}</td>
-                      <td><img src="{{generateSignedUrl('home/'.$activity->image)}}" style="width: 30px;"></td>
+                      <td><img src="{{img_url('home', $activity->image)}}" style="width: 30px;"></td>
                       <td>{{$activity->name}}</td>
                       <td>
                         <a class="popularAct" onclick="myFunctionDelete({{$activity->id}})" title="Delete Activity?" style="cursor: pointer;">
@@ -678,7 +678,7 @@
                 @if($settings->region_image1 == "")
                  <img id="blahR1" onclick="triggerImageR1()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR1" onclick="triggerImageR1()" src="{{generateSignedUrl('home/'.$settings->region_image1)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR1" onclick="triggerImageR1()" src="{{img_url('home', $settings->region_image1)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               
@@ -714,7 +714,7 @@
                 @if($settings->region_image2 == "")
                  <img id="blahR2" onclick="triggerImageR2()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR2" onclick="triggerImageR2()" src="{{generateSignedUrl('home/'.$settings->region_image2)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR2" onclick="triggerImageR2()" src="{{img_url('home', $settings->region_image2)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               
@@ -750,7 +750,7 @@
                 @if($settings->region_image3 == "")
                  <img id="blahR3" onclick="triggerImageR3()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR3" onclick="triggerImageR3()" src="{{generateSignedUrl('home/'.$settings->region_image3)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR3" onclick="triggerImageR3()" src="{{img_url('home', $settings->region_image3)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               
@@ -786,7 +786,7 @@
                 @if($settings->region_image4 == "")
                  <img id="blahR4" onclick="triggerImageR4()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR4" onclick="triggerImageR4()" src="{{generateSignedUrl('home/'.$settings->region_image4)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR4" onclick="triggerImageR4()" src="{{img_url('home', $settings->region_image4)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               
@@ -822,7 +822,7 @@
                 @if($settings->region_image5 == "")
                  <img id="blahR5" onclick="triggerImageR5()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR5" onclick="triggerImageR5()" src="{{generateSignedUrl('home/'.$settings->region_image5)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR5" onclick="triggerImageR5()" src="{{img_url('home', $settings->region_image5)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               
@@ -858,7 +858,7 @@
                 @if($settings->region_image6 == "")
                  <img id="blahR6" onclick="triggerImageR6()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="60" height="70"/>
                   @else
-                <img id="blahR6" onclick="triggerImageR6()" src="{{generateSignedUrl('home/'.$settings->region_image6)}}" class="fetured_images_view" width="60" height="70"/>
+                <img id="blahR6" onclick="triggerImageR6()" src="{{img_url('home', $settings->region_image6)}}" class="fetured_images_view" width="60" height="70"/>
                @endif
               </div>
               

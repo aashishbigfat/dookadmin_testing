@@ -164,7 +164,7 @@
                 <?php if($region->image == null) { ?>
                   <img id="blah" onclick="triggerImage()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="80" height="80"/>
                 <?php } else {?>
-                  <img id="blah" onclick="triggerImage()" src="{{generateSignedUrl('region/'.$region->image)}}" class="fetured_images_view" width="100" height="100"/>
+                  <img id="blah" onclick="triggerImage()" src="{{img_url('region', $region->image)}}" class="fetured_images_view" width="100" height="100"/>
                 <?php } ?>
               </div>
               <div class="col-md-3 col-lg-3 col-sm-12">
@@ -180,7 +180,7 @@
                 <?php if($region->banner_image == null) { ?>
                   <img id="blahbanner" onclick="triggerImageBanner()" src="{{asset('images/no-image.png')}}" class="fetured_images_view" width="120" height="80"/>
                 <?php } else {?>
-                  <img id="blahbanner" onclick="triggerImageBanner()" src="{{generateSignedUrl('region/'.$region->banner_image)}}" class="fetured_images_view" width="120" height="80"/>
+                  <img id="blahbanner" onclick="triggerImageBanner()" src="{{img_url('region', $region->banner_image)}}" class="fetured_images_view" width="120" height="80"/>
                 <?php } ?>
               </div>
               

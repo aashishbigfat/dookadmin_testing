@@ -19,14 +19,14 @@
            
             <td>
               @if($poi->image)
-                <img src="{{generateSignedUrl('poi/'.$poi->image)}}" alt="" style="width: 75%;">
+                <img src="{{img_url('poi', $poi->image)}}" alt="" style="width: 75%;">
               @else
                 <img src="{{asset('images/464X260.png')}}" alt="" style="width: 75%;">
               @endif
             </td>
             <td>
               @if($poi->banner_image)
-                <img src="{{generateSignedUrl('poi/'.$poi->banner_image)}}" alt="" style="width: 75%;">
+                <img src="{{img_url('poi', $poi->banner_image)}}" alt="" style="width: 75%;">
               @else
                 <img src="{{asset('images/no-image.png')}}" alt="" style="width: 75%;">
               @endif
@@ -45,8 +45,8 @@
              data-poiname="{{ $poi->poi_name }}"
              data-address="{{ $poi->address }}"
              data-description="{{ $poi->description }}"
-             data-image="{{ generateSignedUrl('poi/'.$poi->image) }}"
-             data-bannerimage="{{ generateSignedUrl('poi/'.$poi->banner_image) }}"
+             data-image="{{ img_url('poi', $poi->image) }}"
+             data-bannerimage="{{ img_url('poi', $poi->banner_image) }}"
              data-destinationid="{{ $poi->dest_id }}"
              data-destinationname="{{ $poi->dest_name }}"
              title="Edit details"

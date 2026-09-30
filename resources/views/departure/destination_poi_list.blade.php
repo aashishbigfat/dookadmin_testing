@@ -19,7 +19,7 @@
            
             <td>
               @if($poi->image)
-                <img src="{{generateSignedUrl('poi/'.$poi->image)}}" alt="" style="width: 75%;">
+                <img src="{{img_url('poi', $poi->image)}}" alt="" style="width: 75%;">
               @else
                 <img src="{{asset('images/464X260.png')}}" alt="" style="width: 75%;">
               @endif

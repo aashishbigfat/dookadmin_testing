@@ -24,7 +24,7 @@
                  
                     <tr>
                       <td>{{ ($departures->currentpage()-1) * $departures->perpage() + $key + 1 }}</td>
-                      <td style="width: 5%"><img style="width: 70%" src="{{generateSignedUrl('package/'.$departure->image)}}"></td>
+                      <td style="width: 5%"><img style="width: 70%" src="{{img_url('package', $departure->image)}}"></td>
                       <!-- <td style="width: 5%"><img style="width: 100%" src="{{$urlS3.$departure->banner_image}}"></td> -->
                       <td>{{$departure->dep_dook_ref_id}}</td>
                       <td>{{$departure->title}}</td>

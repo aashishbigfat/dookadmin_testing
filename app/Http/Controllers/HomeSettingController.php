@@ -55,7 +55,7 @@ class HomeSettingController extends Controller
                 ->get();
         $pkg_array = explode(',',$settings->experiences);
         $fivePkgExp = HomeExpPackageSetting::select('id','package','package_image')->get();
-        $s3url = generateSignedUrl('home/');
+        $s3url = img_base('home').'/';
         if($settings){
             return view('home_setting.edit',compact('regions','experiences','countries','settings','activities','honeymonnPkg','pkg_array','fivePkgExp','s3url'));
         }else{
